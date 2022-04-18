@@ -1,0 +1,33 @@
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>GSC Drone Lab 1 - Instructions</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ </head>
+
+ <body>
+   <div>
+        <span class="blue">Options for creating a new application in OpenShift</span>
+
+        <p>Within the OpenShift web console Developer perspective, there is the <b>+Add item</b> in the left navigation menu. This page is the <b>entry point</b> for adding an application or service to your OpenShift project.</p>
+        
+        <p>The Add page offers <b>(6) user flows</b> for adding components from Git, deploying Container Images, adding an item from the Developer Catalog, importing your Dockerfile from a git repo, Importing YAML or adding a Database. You can create, build and deploy applications easily and in real-time using these user flows.From a developer's point of view, deploying an application to OpenShift is easy. The challenging part is finding the <b>best way</b> to do it because OpenShift is so adaptable and flexible.</p>
+        
+        <p>You should <b>consider</b> the following when determining which way is the best when deploying an application: your development process, your developers' maturity regarding containers, your ops or technical experts' involvement, etc.</p>
+        
+        <ul>
+            <li><b>From Git</b><br/>This option involves importing code from your git repository to be built and deployed.</li> 
+            <li><b>Container Image</b><br/>This option involves deploying an existing image from an image registry or image stream tag.</li> 
+            <li><b>From Catalog</b><br/>This option involves browsing the catalog to discover, deploy and connect to services.</li>
+            <li><b>From Dockerfile <span class="blue">(*Covered in this lab)</span></b><br/>This option involves importing your Dockerfile from your git repo to be built & deployed.</li>
+            <li><b>YAML</b><br/>This option involves creating resources from YAML file or JSON definitions.</li>
+            <li><b>Database</b><br/>This option involves browsing the catalog to discover database services to add to your application.</li>
+        </ul>
+        
+        
+        It is recommended that lab users take a look at <a href="https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/applications/application-life-cycle-management#odc-creating-applications-using-developer-perspective" target="_blank">https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/applications/application-life-cycle-management#odc-creating-applications-using-developer-perspective</a> and <a href="https://docs.openshift.com/container-platform/4.3/applications/application_life_cycle_management/odc-creating-applications-using-developer-perspective.html" target="_blank">https://docs.openshift.com/container-platform/4.3/applications/application_life_cycle_management/odc-creating-applications-using-developer-perspective.html</a> to get an in-depth summary of each of these options not covered in the lab. Due to time limitations and the nature of labs, the “From Dockerfile” option was best suited for a lab user to quickly deploy an application to the hybrid multi-cloud while still demonstrating OpenShift’s capabilities. 
+   </div>
+ </body>
+</html>

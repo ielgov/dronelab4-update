@@ -1,0 +1,1651 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>GIS Stormwater Drone Lab - Instructions</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <a id="top"></a>
+    <div id="navbar">
+        <span class="start" onClick="toggleOptions()"><span class="UPDATE3">GIS</span> Stormwater Drone Lab</span>
+        <span id="nb" class="item" onClick="moveTo('begin')" style="background-color: #548235;">Begin Lab</span>
+        <span id="np" class="item" onClick="moveTo('prelim')">Preliminary Steps</span>
+        <span id="n1" class="item" onClick="moveTo('s1')">Step 1</span>
+        <span id="n2" class="item" onClick="moveTo('s2')">Step 2</span>
+        <span id="n3" class="item" onClick="moveTo('s3')">Step 3</span>
+        <span id="ns" class="item" onClick="moveTo('sum')">Summary</span>
+        <a href="https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/" target="_blank">
+            <span class="out item"> <img src="./img/slack.png" /> Lab Slack channel - post questions & more ⇒</span>
+        </a>
+    </div>
+    <div id="optionsMenu"><span class="opt" id="highlightedUpdates3" onClick="updates3()">[Highlight 3/15/2021 Updates]</span> <span id="keepTop" onClick="keepTop()">Keep at top</span></div>
+    <div id="full">
+        <!--- Begin Lab -->
+        <div id="beginlab" class="main" style="display:block;">
+            <div class="block">
+                <div class="leftHalf">
+                    <h1><span class="UPDATE3">GIS</span> Stormwater Drone Lab: Introduction</h1>
+                    <span class="userNote">&#9734 For this lab, a lab user name was created for you. This name was set to <b><span class="labnameHere">YourLabName</span></b>. This information will be addressed and referenced later in the lab.</span>
+                    
+                    <p class="UPDATE3">Note: The IBM Global Solution Center in Dallas (formerly referred to as the <b>GSC</b>) is now known as IBM Global Industry Solutions (<b>GIS</b>).  You will see the GIS name reflected throughout this Lab, but if you revisit previous Labs you may still encounter the GSC name.</p>
+
+                    <p>
+                        <b>Welcome back!</b> This lab is the
+                        <b>third</b> in a series of labs designed to demonstrate how several IBM technologies, such as OpenShift (Kubernetes), Hybrid Multicloud, and some of the key capabilities available within
+                        <b>Maximo Application Suite (Monitor, IoT Platform, Visual Inspection)</b> can be utilized along with modern industry devices, such as <span class="darkblue">drones</span> and <span class="darkblue">sensors</span>, in various industry-specific applications.
+                    </p>
+                    
+                    <p>
+                        In previous labs, you deployed a customized, containerized application onto OpenShift and then connected and utilized various capabilities made possible by IBM Cloud Satellite. If you have not completed the previous labs, please return to the SBaaS Catalog (<a href="http://ibm.biz/sbaas-app" target="_blank">http://ibm.biz/sbaas-app</a>) and request access to Remote Drone Console Application Hands-on Lab #1, and then Remote Drone Console Application Hands-on Lab #2. Keep in mind that there is an AWS version of the Drone Lab 1 available as well. This lab is optional but recommended. </p>
+                    
+                    <p>
+                        If it has been a significant amount of time since you have completed the labs, you can review the guide for <b>Drone Lab 1</b>, located here:
+                        <a href="https://pages.github.ibm.com/dallas-gsc-gov/dronelab" target="_blank">https://pages.github.ibm.com/dallas-gsc-gov/dronelab</a> for your reference. You may also refer to the personalized guide for <b>Drone Lab 2</b> that was previously emailed to you.
+                    </p>
+                    
+                    <p>
+                        Please confirm below that you have completed the previous labs and are ready to start this lab.
+                    </p>
+
+                    <p id="lab1Confirm">
+                        <input type="checkbox" id="lab1Complete" onclick="lab1Completed()"> I have (at least) completed Drone Lab 1 and 2 and am ready to begin this lab, <span class="UPDATE3">GIS</span> Stormwater Drone Lab.</p>
+
+                    <p id="lab1Confirmation" style="display:none">Thank you for completing Drone Lab 1 and 2! You may continue on with this lab.</p>
+
+                    <p>The diagram on the right depicts a high-level flow and services used in this lab.</p>
+                </div>
+                <div class="rightHalf">
+                    <div class="tableofcontents UPDATE3">
+                        <span class="magenta">Table of Contents</span>
+                        <br/>
+                        <br/>
+                        1. Introduction and Overview<br/>
+                        2. Understand how Maximo Visual Inspection can be trained to detect objects within a video/image <br/>
+                        3. Walkthrough how Maximo Monitor and IoT Platform can bring insights from sensors <br/>
+                        4. Explore Stormwater Management Operations in the Remote Drone Console Application <br/>
+                        5. Summary & Contacts
+                    </div>
+                    <img class="sideImage" src="./img/lab_appoverview.png" />
+                    <br/>
+                    <a href="./img/lab_appoverview.png" target="_blank">View full size diagram</a>
+                </div>
+            </div>
+            <div class="block">
+                <h2> Lab Overview </h2>
+            </div>
+            <div class="block">
+                <div>
+                    <div class="leftHalfThird">
+                        <img src="./img/labflow.png" class="bigImage" />
+                    </div>
+                    <div class="rightHalfThird" style="text-align: left; vertical-align: top">
+                        <p class="UPDATE3">Throughout the lab, there will be several references to the <span class="tblue"><b>IBM Cloud SBaaS</b></span>. It is a Hybrid Multicloud <b>Sandbox as a Service (SBaaS)</b> platform which provides cloud services to enable our technical sellers to gain experience with IBM Cloud capabilities along with other industry Cloud platforms in a hands-on environment. Pre-packaged scenarios and technologies can be customized to build client specific PoCs/prototypes and show the value of IBM Cloud and Industry solutions to help clients with their cloud and digital transformation journeys.</p>
+
+                     <p>The purpose of this lab is to consider how extending the capabilities of the Remote Drone Operations Console that you worked with in Lab 1 and Lab 2 can help deliver functionality within an industry context of Stormwater Operations. You may remember that the previous labs resulted in an application running in OpenShift within the IBM Cloud SBaaS that was connected to drones, sensors, and other cloud resources running in the <span class="UPDATE3">Global Industry Solutions</span> private cloud. The <b>purpose</b> of that application was to allow a user to see <span class="tblue">video output and telemetry data from a remote drone</span>, as well as to <span class="tblue">visualize and filter sensors and other resources</span> that were within the same geospatial area. In this lab, you will take that application a step <b>further</b> and bring <span class="tblue">additional insights</span> to a user who is concerned with public safety during situations where risks can occur during/after <b>heavy rainfall</b> accumulates in areas where pedestrian and vehicular traffic may become <b>dangerous</b>.</p>
+
+                    <table class="section_withImage">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p style="text-align: center;margin-right: 20px">
+
+                                        <video width="400" height="auto" autoplay loop>
+                                            <source src="./vid/rain.mp4" type="video/mp4" />
+                                        </video>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>Consider for a moment the challenges that cities today face to effectively mitigate and respond to excess stormwater on city roadways during and after heavy or prolonged rainfall. The stakes are high, as flooded roadways can impact traffic as well as citizen safety.</p>
+                                    <p> Unfortunately, it is not uncommon for a city's command center operators to resort to making decisions without easy access to information and tools that can provide full situational awareness needed to assess, prioritize and respond to these stormwater flooding issues. In fact, many cities use manual processes to dispatch, track, and support their field responders who need to perform actions at the location of each given issue. Client-facing efforts around emergency management, public safety, traffic management, and stormwater operations management have clearly shown that operators need decision-support analytics and situational awareness that can simplify access to information and insights.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     
+                     <p>In the context of this Remote Drone application, you will learn how portfolio capabilities within the IBM Maximo Application Suite such as  Visual Inspection and Monitor provide analytic uplift on raw drone video footage and weather/stream sensor readings that can be leveraged to deliver insight directly to the fingertips of the Stormwater Operations Management command center operator. Specifically, you’ll get exposure to how visual analytic models can be trained and deployed within a Maximo Visual Inspection (MVI) environment based on a preliminary dataset of images or video and made available to external applications via an API endpoint. You'll even be able to test the deployed model via a custom user interface running in the IBM Cloud SBaaS.   Then, you will walk through how weather and water sensors can be managed and monitored via Maximo Monitor and the associated IoT Tool (Watson IoT Platform) to trigger alerts based on abnormal measurements. Finally, you’ll revisit the Remote Drone Console application to experience the new Stormwater Operations functionality where you’ll interact as a command center operator who is using the interface to remotely monitor the impacts of a severe thunderstorm in Coppell, TX. As a takeaway, you will be able to consider how visual and sensor analytics, when combined with insights from weather and other city data in a geospatial context, can help operators gain the kind of situational awareness that allows them to prioritize and coordinate their responsive actions.</p>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="block">
+        
+            <h2>More about IBM Maximo Application Suite</h2>
+
+            <p>The <b>IBM Maximo Application Suite (MAS)</b> is a single integrated set of application offerings focused around managing the assets. The suite is built on the Red Hat OpenShift environment to provide multi-cloud portability, including support for a hybrid cloud scenario. View full offering information here: <a href="https://www.ibm.com/products/maximo" target="_blank">https://www.ibm.com/products/maximo</a>. </p> 
+
+                    <table class="section_withImage">
+                        <tbody>
+                            <tr>
+                                <td width="50%" style="vertical-align: top">
+                                    <p style="text-align: center">
+                                        
+                                        <img class="sideImage" src="./img/mas_diagram.png" />
+                                        <br/>
+                                        <a href="./img/mas_diagram.png" target="_blank">View full size diagram</a>
+
+                                        <p class="smalltext">Given the maturity of the product, MAS also supports industry-specific and add-on products that include Maximo Asset Management industry solutions: <br/>
+                    - IBM Maximo for Utilities <br/>
+                    - IBM Maximo for Oil and Gas <br/>
+                    - IBM Maximo Nuclear Power <br/>
+                    - IBM Maximo for Transportation <br/>
+                    - IBM Maximo for Aviation <br/>
+                    - IBM Maximo for Civil Infrastructure <br/>
+                    
+                    <p>You can also visit 2021 FastStart technical enablement for the latest version (8.3) of Maximo Application Suite <a href="https://mediacenter.ibm.com/media/1_gzgf6wnz" target="_blank">here</a>.</p>
+                                       
+                                    </p>
+                                </td>
+                                <td style="vertical-align: top">
+                                   <div class="caplist">
+                                        <p>In this lab, we will focus on the following Maximo Application Suite v8.2 <span class="tblue"><b>capabilities</b></span>:</p>
+                                        - <b><span class="bluehighlight">Maximo Monitor</span></b>: Improve asset and operational availability with advanced AI-powered remote asset monitoring at scale. Collect data from your existing IoT systems, an converge your IT systems and operational systems in a single data lake and detect anomalies. Depends on underlying IoT Tool (<b><span class="tblue">Watson IoT Platform</span></b>) to get enterprise-wide visibility into performance.<br/><br/>
+                                        - <b><span class="bluehighlight">Maximo Visual Inspection</span></b>: Use the power of AI computer vision to build highly accurate customized AI models in a way that’s fast and remarkably easy. Perform a visual inspection of the line or asset using existing cameras, or commercial, off-the-shelf iOS devices to get immediate, actionable notifications of any emerging issue. Scale easily to view multiple points 24/7 including global views of all plants and geographies. Integrate with maintenance and quality workflows for a fast and prescriptive response.<br/>
+                                   </div>
+                                   <br/>
+                                    <div class="caplist">
+                                        <p>For reference, the remaining Maximo Application Suite v8.2 capabilities are explained below:</p>
+                                        - <b>Maximo Manage</b>: Reduce downtime and costs by optimizing asset management and maintenance processes to improve operational performance. Leverage embedded industry expertise with best-practice data models and workflows to accelerate your industry transformation. Unify asset management processes using role-based workspaces to help teams across your enterprise. Maximo Manage unifies robust asset life cycle and maintenance management activities, providing insight into all enterprise assets, their conditions and work processes to achieve better planning and control. <br/><br/>
+                                        - <b>Maximo Health</b>: Manage the health of your assets using IoT data from asset sensors, asset records and work history to increase asset availability and improve replacement planning. Get a true view of asset health via dashboard displays to provide evidence to base operational decisions.<br/><br/>
+                                        - <b>Maximo Predict</b>: Go beyond time-scheduled maintenance to condition- based action to predict the likelihood of future failures by applying machine learning and data analytics to reduce cost and asset failures. Build on the power of other Maximo capabilities and Watson Studio to make data- driven decisions and build predictive models.<br/><br/>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+        
+        </div>
+        <div class="block">
+            <h2>Lab Environment Setup</h2>
+                <div class="leftHalf">
+            <p>When you made a request to take this hands-on lab, there were some background tasks that were performed on your behalf in order to prepare the lab environment, which are described below. Don't worry if you have some questions about these concepts... you will get a lot more explanation and hands-on experience as you move through lab steps.</p>
+
+            <p>
+                <b>Created a Maximo Visual Inspection (MVI) environment within <span class="UPDATE3">GIS</span> Private Cloud</b><br/>
+
+                Provisioned and installed Maximo Visual Inspection v 8.0 (as part of Maximo Application Suite 8.2) within an OpenShift Cloud Platform 4.6 environment with one worker node allocated on a bare metal machine containing a single Nvidia Tesla P100 GPU (graphical processing unit). We then created, trained, and deployed a custom object detection model that would be relevant for stormwater management operations.  To do this, we also took drone footage near the <span class="UPDATE3">GIS</span> location in Coppell, TX to be used throughout the lab. 
+            </p>
+
+            <p>
+                <b>Created a Maximo Monitor within <span class="UPDATE3">GIS</span> Private Cloud</b><br/>
+
+                Provisioned and installed Maximo Monitor version 8.0  and IoT Tool (Watson IoT Platform) as part of Maximo Application Suite 8.0, within an OpenShift Cloud Platform 4.4 environment. We then created a series of sample sensors based on project experience with actual weather and river/stream sensors from the DFW area and configured to support a stormwater use case. 
+            </p>
+
+             <!--<p>
+                <b class="UPDATE3">Created content within Watson Media</b><br/>
+
+                Created a demo account on Watson Media and created MVI and Maximo Monitor training material that will be embedded in this lab via the Watson Media <i>Video Streaming</i> service.
+            </p>-->
+
+            <p>
+                <b>Created a custom MVI test application <span class="UPDATE3">in</span> the IBM Cloud SBaaS</b><br/>
+
+               Created a small application to allow the user to interact with the <span class="UPDATE3">GIS</span> Private Cloud instance of the MVI Stormwater model API from IBM Cloud SBaaS over a secure tunnel enabled via Cloud Satellite Link.
+            </p>
+
+            <p>
+                <b>Established <span class="UPDATE3">GIS</span> infrastructure as IBM Cloud Satellite Location</b><br/>
+
+                IBM Cloud Satellite enables local <span class="UPDATE3">GIS</span> resources to be utilized as a Satellite location by using the infrastructure already present in that location. To achieve the necessary GIS Satellite location configuration, a set of hosts machines were dedicated in order to deploy Satellite control planes that could the manage GIS cluster. This established a secure Satellite link between IBM Cloud and the GIS location. Satellite Link uses Link Endpoints configured on this private GIS environment to enable the IBM Cloud SBaaS Remote Drone Console application functionality that will be leveraged as part of the lab's Visual Inspection test page and Remote Drone Console Application functionality.
+            </p>
+
+            <p>
+                <b>Deployed a project and artifacts for each lab user in the IBM Cloud SBaaS</b><br/>
+
+               A project with an updated Remote Drone Console Application with custom Stormwater Operations functionality was created and deployed for each lab user in a IBM Cloud SBaaS OpenShift Cloud Platform 4.5 cluster. 
+            </p>
+
+            <p>
+                <b>Adding each user to the IBM Cloud SBaaS environment</b><br/>
+
+                The new user was first given user permissions to an existing IBM Cloud organization for the SBaaS environment that was provisioned for the lab. A new project was then created specifically for that user in the OpenShift Cloud Platform 4.5 cluster within that organization, and user policies were applied to enable the permissions necessary for completion of the lab steps.
+            </p>
+                </div>
+                 <div class="rightHalf">
+
+                     <img class="sideImage" src="./img/GISDroneHybridSatOverview.png" />
+                    <br/>
+                    <a href="./img/GISDroneHybridSatOverview.png" target="_blank">View full size diagram</a>
+
+                    <br/><br/>
+
+                    <img class="sideImage_sm" src="./img/lab_setup.png" />
+
+                     </div>
+
+            
+
+        </div>
+        <div class="nextStepBar" onClick="moveTo('prelim')">
+            Move on to the Preliminary Steps →
+        </div>
+    </div>
+    <!--- Preliminary Steps -->
+    <div id="prelim" class="main">
+        <div class="block">
+            <div class="leftHalf">
+                <div class="slackInfo">
+                    <h2>
+                        <a name="slack">Slack Communication</a>
+                    </h2>
+
+                    <p>
+                        Communication (such as feedback, questions, comments, and help) is done through a Slack channel dedicated to this lab. Before you begin the lab, it is encouraged that you confirm you have access to the channel
+                        <span class="purple">#2021gsc_ibmcloudsandbox_stormwaterdronelab</span>, located in the <b>IBM Sales</b> workspace (you may need to enter <b><span class="tblue">ibm-sales</span></b>.slack.com first).
+                    </p>
+                    <p>
+                        Go to
+                        <span class="blue">
+                            <a href="https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/" target="_blank">
+                                https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/
+                            </a>
+                        </span>
+                        to verify you have access to this channel.
+                    </p>
+                </div>
+            </div>
+            <div class="qHalf">
+                <div class="question">
+                    👈 When I click that link, I do not see a Slack channel.
+                    <span class="readmore">[Click to Read Solution]</span>
+                </div>
+                <div class="answer">
+                    You will encounter issues if you do not have access to the
+                    <b>IBM Sales workspace</b>. <br/><br/>
+
+                    Go to <a href="https://ibm-sales.slack.com" target="_blank">https://ibm-sales.slack.com</a> - if you do not see a Slack channel at all, you may need to go
+                    <a href="https://ibm.enterprise.slack.com/signin/find-workspaces" target="_blank">https://ibm.enterprise.slack.com/signin/find-workspaces</a> and search for <b>“IBM Sales”</b>. This workspace has over 34,000 members and has a
+                    handshake icon with a blue background. Join this workspace and you will be granted access.
+                    <b>You may need to scroll down several times to find it.</b>
+                    <br/><br/>
+                    Once you click to join the IBM Sales workspace, try visiting <a href="https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/" target="_blank">https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/</a> again.
+                </div>
+            </div>
+        </div>
+
+        <div class="block">
+            <h2> Preliminary Steps </h2>
+            <div class="leftHalf">
+                <div class="goldInfo">
+                    You will open <b>several tabs</b> throughout the course of this lab. To avoid confusion, it is recommended that this instruction site is viewed via a browser <b>window with no other tabs open</b> before you begin.
+                </div>
+
+                <p>
+                    It is strongly recommended you use <b>Google Chrome</b> or <b>Mozilla Firefox</b> as your browser for this lab. Browsers such as Safari have been known to encounter errors with some of the IBM Cloud services.
+                </p>
+
+                <p>
+                    The screenshots shown in this lab were recorded in a full screen width/height browser. Some IBM Cloud services <b>perform best in full screen resolution</b>.
+                    </p>
+
+                <p>
+                    To avoid issues as you navigate through the lab steps, it is ideal to use the buttons and tabs within the instructions (as opposed to using your browser's "back" and "forward" options).
+                </p>
+
+
+                <p>
+                    <b>After you requested this lab through the SBaaS, you should have received an email </b> <i>(“Thank you for your interest in the IBM Sandbox as a Service Hands—on <span class="UPDATE3">GIS</span> Stormwater Drone Lab...”)</i> containing the <b>link to this instructions page.</b>
+                </p>
+
+                <p>
+                    <span class="green">The instructions here will guide you through the lab step by step.</span>
+                </p>
+            </div>
+
+            <div class="rightHalf">
+                <p>This instructions page that you have been provided should contain your lab name.</p>
+
+                <div class="impInfo">
+                    <p><b>Your Lab Name</b>: <span class="labnameHere">YourLabName</span></p>
+                </div><br/>
+                <div class="subImpInfo UPDATE3">
+                    Referencing the above, if your Lab Name is <b>"YourLabName"</b>, you may encounter errors in the lab steps that follow. Please use the Slack channel link located in the top right corner of this page and post <b>"I was not assigned a lab name for GIS Stormwater Drone Lab."</b>
+                </div>
+
+                 <p class="inote UPDATE3">
+                    <b>Note</b>: If you continue with this lab without having completed at least Drone Lab 1 & Drone Lab 2, you may not have the appropriate context for some of the activities and technical flows that follow. If this applies to you, it is recommended that you request the appropriate labs via the SBaaS here:  <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5f111965551a9d2ccfaad85d&type=template" target="_blank">Lab 1 for IBM Cloud</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5ffbd20447b015001adc2aa4&type=template" target="_blank">Lab 1 for AWS Cloud</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5fab6aaabf28fe001ab505a3&type=template" target="_blank">Lab 2 with Cloud Integration</a>.
+                </p>
+                    
+                <p class="inote UPDATE3">If you did take the labs previously but your <span class="UPDATE3">request</span> is currently marked as <b>"expired"</b> or <b>"de-provisioned"</b> within the SBaaS, you will still be able to access the lab instruction material and associated OpenShift project endpoints to use as a reference.
+                </p>
+                
+
+            </div>
+        </div>
+
+        <div class="block UPDATE3">
+                    <img src="./img/labexpectations.png" class="bigImage"/>
+                    <p style="text-align: center">The diagram above explains the overall flow of this lab. <br/><br/>
+                    
+                    As you can see, the short walkthrough videos and activities in Step 1 and Step 2 are important <br/>
+                    and will allow you to start the activity in Step 3 with a <b>deep understanding</b> of the capabilities <br/>
+                    and Government Industry context showcased within the Stormwater Operations functions of the Remote Drone Console Application.</p>
+                </div>
+
+
+
+        <div class="timeline">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="step next">
+                            <div class="title">Step 1 <b>Next</b></div><br/>
+                            ☑ IBM Maximo Visual Inspection: Getting started <br/>
+                            ☑ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                            ☑ IBM Maximo Visual Inspection: Model training<br/>
+                            ☑ IBM Maximo Visual Inspection: Deploy the model<br/>
+                            ☑ IBM Maximo Visual Inspection: Using the model <br/>
+                        </td>
+                        <td class="arrow">→</td>
+                        <td class="step">
+                            <div class="title">Step 2</div><br/>
+                            ☑ Maximo Monitor: IoT Tool Device creation <br/>
+                            ☑ Maximo Monitor: IoT Tool Interface definition <br/>
+                            ☑ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                            ☑ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                            ☑ Review Maximo Monitor & IoT Tool <br/>
+                        </td>
+                        <td class="arrow">→</td>
+                        <td class="step">
+                            <div class="title">Step 3</div><br/>
+                            ☑ Explore Remote Drone Console Application Stormwater Operations <br/>
+                            ☑ Final Notes <br/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+        <div class="nextStepBar" onClick="moveTo('s1')">
+            Ready? Move on to Step 1 and start the lab →
+        </div>
+
+    </div>
+    <!--- Begin Step 1 -->
+    <div id="step1" class="main">
+        <div id="menu">
+            <a href="#step1" class="start">Step 1</a>     
+            <a href="#1_1">1.1 IBM Maximo Visual Inspection: Getting started</a>
+            <a href="#1_2">1.2 IBM Maximo Visual Inspection: Visual Annotation</a>
+            <a href="#1_3">1.3 IBM Maximo Visual Inspection: Model training</a>
+            <a href="#1_4">1.4 IBM Maximo Visual Inspection: Deploy the model</a>
+            <a href="#1_5">1.5 IBM Maximo Visual Inspection: Using the model</a>
+            <a href="#finishStep1" class="end">Finish Step 1</a>
+        </div>
+        <div id="content">
+            <div id="main">
+    
+                <div id="sec_step1">
+                    <h1>
+                        <a name="step1 UPDATE3">1. Understand how Maximo Visual Inspection can be trained to detect objects within a video/image </a>
+                    </h1>
+
+                        <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:left;vertical-align: top;">
+                                        <p>
+                                            You may recall that in <b>Drone Lab 2</b>, you were able to view the <b>data</b> from a <b>drone</b> within the <span class="UPDATE3">GIS</span> Private Cloud environment via the Remote Drone Console application running in IBM Cloud SBaaS <i>(image on the right)</i>.</p>
+                                            
+                                            <p> This drone data included <b>images</b> captured by the drone camera, along with various <b>telemetry</b> and <b>measurements</b>. If you would like to review the specific data the drone sends back, you can review the details <a href="./img/DroneViewerModal.png" target="_blank">here</a>, which are excerpted from Drone Lab 2.
+                                        </p>
+
+                                    </td>
+                                    <td style="vertical-align: top;">
+                                        <img src="./img/1_dronelab2UI.png" class="sideImage_left_tb" /><br />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="block">
+                            <p>
+                                Our Remote Drone Console Operators can further gain insights from drone imagery using <b>IBM Maximo Visual Inspection</b> to analyze the drone images using classification or object detection. Based on trained models, multitudes of images sent by many camera/drone sources can have analytics applied in order to quickly and effectively identify patterns or problems. This allows operators to focus on the insights across sources rather than trying to try to monitor raw imagery. </p> 
+                                
+                                <p>In our stormwater management use case, you can imagine how critical it is for operators to maintain some level of situational awareness. They must be able to assess risks during disruptive weather events when dangerous conditions can impact traffic and directly threaten the safety of citizens and first responders. In this step, you will explore IBM Maximo Visual Inspection, and ultimately consider how its powerful analytics can be leveraged to raise insights about stormwater in close proximity to  vehicular and pedestrian traffic that can help assess and prioritize the public safety response.</p>
+                            </div>
+
+                            <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h2>More about IBM Maximo Visual Inspection (MVI)</h2>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">
+                                            
+                                        <p>You recall that MVI is just one of the powerful capabilities within the overall Maximo Application Suite portfolio that performs visual inspection of assets to get immediate, actionable insights about emerging issues. MVI is intelligence that drives automation of existing manual processes in addition to enabling subject matter experts to easily and quickly use AI computer vision, in order to build highly accurate customized AI models. It also is compatible with Edge and mobile.</p>
+                                
+                                        <p>You can imagine how important it is to identify issues <span class="UPDATE3">which</span> may have been missed during normal inspection and preventive maintenance cycles for life-threatening situations that involve public safety. Often, challenging operating environments in the field exist as well. As a result, adding a level of <b>intelligent oversight</b> that can look for errors 24/7 in the operations or output of an asset can be very beneficial. MVI uses the power of AI to detect errors and defects, with alerts to operators to take action, avoiding disruptions that could take down operations. </p>
+
+                                        </td>
+                                        <td>
+                                            <img src="./img/mas_visualinspection.png" class="sideImage_left_tb" /><br />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/><br/>
+
+                            <div class="caplist">
+                                <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left" class="smalltext">
+                                            <p><b>Maximo Visual Inspection</b> includes the following key features: <br/>
+                                        Data ingest <br/>
+                                        - Drag-and-drop capability for moving images into data sets<br/>
+                                        - Common file format support for jpg, png, mp4, zip, etc.<br/><br/>
+                                        Data labeling <br/>
+                                        - Point-and-click labeling with bounding box or polygon control<br/>
+                                        - Data augmentation for creating larger data sets<br/>
+                                        - Auto labeling, to greatly reduce the manual effort and time<br/><br/>
+                                        Model training -- supported model types <br/>
+                                        - Image classification<br/>
+                                        - Object detection<br/>
+                                        - Image segmentation<br/>
+                                        - Video action detection<br/><br/>
+                                        Inference/Deployment options <br/>
+                                        - Batch mode<br/>
+                                        - Near real time at the edge (Maximo Visual Inspection Edge)<br/>
+                                        - Near real time with iOS device via smart camera capability (Maximo Visual Inspection Mobile)<br/>
+                                        </p>
+                                        
+                                        </td>
+                                         <td>
+                                            <img src="./img/1_visualinspectiondiagram.png" class="sideImage_left_tb" /><br />
+                                        </td>
+
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                                
+                            </div>
+                            
+                            <br/><br/>
+                       
+                        <table class="section_withImage">
+                            <tbody>
+                            <tr>
+                            <td style="vertical-align: top">
+                                <p><b>Architecture overview</b><br/>
+                                The architecture of IBM Maximo Visual Inspection consists of hardware, resource management, deep learning computation, service management, and application service layers. Each layer is built around industry-standard technologies.</p>
+
+                                <p><b>A Note about GPUs:</b><br/>
+                                The OpenShift® cluster where Maximo Visual Inspection is deployed must have 1 or more worker nodes with 1 or more Nvidia GPUs available for training models. For more information about hardware requirements, see "Application-specific requirements" in Maximo Application Suite system requirements.  For this lab, there is an MVI instance with a GPU-enabled worker node running in the Dallas <span class="UPDATE3">GIS</span> Private Cloud. </p>
+                            </td>
+                            <td>
+                                <img class="rightFloat" src="./img/1_architecture.png">
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+
+                            <hr/>
+                            
+                            <div class="block">
+                            <p>As you progress through this step of the lab, you will be guided through the <span class="tblue"><b>creation</b></span>, <span class="tblue"><b>preparation</b></span>, <span class="tblue"><b>training</b></span>, and <span class="tblue"><b>deployment</b></span> of a model in Maximo Visual Inspection. Once you’ve walked through the process, you will interact with <span class="tblue"><b>a Maximo Visual Inspection (MVI) test page</b></span> that was created to allow you to experience and consider how an external application can interact with an MVI model that has been trained to detect objects from drone images, traffic cameras, and other video sources that would be relevant to stormwater operators.</p>
+
+                            <img class="standardImage" src="./img/1_foursteps.png">
+                            </div>
+    
+    
+                    <p>Reference:</p>
+                    <div class="whole">
+                        <div class="ref instructionRect">
+                            <div class="in">
+                                <span class="title">Instruction/Step</span>
+                                <br/>
+                                Indicated as text with light blue background.
+                                <br/>
+                                <br/>
+                                <i>Example:</i>
+                                <br/>
+                                <div class="step">Scroll down after you make your changes</div>
+                            </div>
+                        </div>
+                        <div class="ref reminderRect">
+                            <div class="in">
+                                <span class="remindertitle">Reminder</span>
+                                <br/> It's important to read each step carefully and in order.
+                                <br/>
+                                <br/> Skipping sections, reading too fast, or not clicking to read
+                                <br/>
+                                <div class="ex_question">💡
+                                    <b>More Information</b> lightbulb blocks</div>
+                                <br/> may result in incomplete learning.
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="whole">
+                        <div class="rect blueRect">
+                            <div class="in">
+                                Technologies Used
+                                <br/>
+                                <img src="./img/visualinspection.png" />
+                            </div>
+                        </div>
+    
+                        <div class="rect magentaRect">
+                            <div class="in">
+                                Your Tasks for Step 1
+                                <br/>
+                                <br/>
+                                <div class="list">
+                                    ✅ IBM Maximo Visual Inspection: Getting started <br/>
+                                    ✅ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                                    ✅ IBM Maximo Visual Inspection: Model training<br/>
+                                    ✅ IBM Maximo Visual Inspection: Deploy the model<br/>
+                                    ✅ IBM Maximo Visual Inspection: Using the model <br/>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="timeline">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="step inprogress">
+                                        <div class="title">Step 1
+                                            <b>In Progress</b>
+                                        </div>
+                                       ☑ IBM Maximo Visual Inspection: Getting started <br/>
+                                        ☑ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                                        ☑ IBM Maximo Visual Inspection: Model training<br/>
+                                        ☑ IBM Maximo Visual Inspection: Deploy the model<br/>
+                                        ☑ IBM Maximo Visual Inspection: Using the model <br/>
+                                        <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step">
+                                        <div class="title">Step 2</div>
+                                         ☑ Maximo Monitor: IoT Tool Device creation <br/>
+                                         ☑ Maximo Monitor: IoT Tool Interface definition <br/>
+                                         ☑ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                                         ☑ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                                         ☑ Review Maximo Monitor & IoT Tool <br/>
+                                        <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step">
+                                        <div class="title">Step 3</div>
+                                        <br/> ☑ Explore Remote Drone Console Application Stormwater Operations
+                                        <br/> ☑ Final Notes
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                </div>
+    
+                <!-- 1.1 -->
+                <div id="sec_1_1">
+                    <h2>
+                        <a name="1_1">1.1 IBM Maximo Visual Inspection: Getting started</a>
+                    </h2>
+    
+                    <div class="sectionTitle">1.1.1</div>
+                    <p>Given a corpus of existing video footage and imagery taken from drones, traffic cameras, and even citizen uploads, <span class="tblue"><b>IBM Maximo Visual Inspection (MVI)</b></span> was designed to allow technical or non-technical subject matter experts (like Stormwater Management operators) to produce an object detection model that can help find insights when processing future images. This is possible because MVI has <span class="UPDATE3">a</span> very guided and intuitive user interface, starting with the concept of creating a new data set from a corpus of images or video.</p>
+
+                    <p>Below is a video walkthrough of the data set creation process that explains step-by-step how the user can navigate through the MVI interface, starting immediately after logging in. The video is being served via <span class="tblue"><b>Watson Media’s Video Streaming service</b></span>, and you should  notice that <b>Closed captioning</b> has been provided. (You can click <b>"CC"</b> on the video to enable/disable).</p>
+
+                    <p><i>HINT: If text in the video is difficult to read, you can make the video <b>fullscreen</b> and/or click <b>"HD"</b> and select the <b>highest quality</b>.)</i></p>
+
+                    <iframe src="https://video.ibm.com/embed/recorded/129537173?showtitle=false" style="border: 0;" webkitallowfullscreen allowfullscreen frameborder="no" width="1000" height="630" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    
+                    <br/><br/>
+
+                    <div id="q1_1_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you watched this video, hopefully you were able to identify these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div>
+                    <br/>
+                    <p>For full details of this step, you can also reference the corresponding section in the <a href="https://www.ibm.com/support/knowledgecenter/SSRU69_8.0.0/base/vision_create_dataset.html" target="_blank">MVI knowledge center</a>.</p>
+                    
+                </div>
+
+                <!-- 1.2 -->
+                <div id="sec_1_2">
+                    <h2>
+                        <a name="1_2">1.2 IBM Maximo Visual Inspection: Visual Annotation</a>
+                    </h2>
+                    <div class="sectionTitle">1.2.1</div>
+
+                    <p>Once the user has captured frames (either manually or using MVI’s auto-capture capability) in the new data set based on the imported images or video, the user can now start to <b>annotate</b> those frames by labeling the objects that should be detected in future images. An object is used to identify specific items in an image or specific frames in a video. You can label multiple objects in an image or a frame in a video. An example of objects in an image of cars might be a wheel, headlights, and windshield. In our stormwater use case, we will be labeling vehicles, water, flooding, people, buildings, etc. </p>
+
+                    <div class="UPDATE3 grayBox">
+
+                    <p>Image Classification can be used to build a solution that can examine an image and properly classify it according to your model. For example, the model can examine images of a flooding situation and can classify if the flooding is happening on a road or low-level water crossing bridge and thus helps to determine the flooding severity. In the above use case, you train a model to recognize flooding happening on a road versus low-level water crossing bridge categories.</p>
+                    
+                    <p>In this lab, we use Object Detection model rather than Image Classification model to determine if a vehicle is passing through a flooded region by examining the image for a vehicle object, water, and splashes around the wheels of the car. If all of the above objects are detected in an image,  the system can determine that a vehicle is passing through a flooded region which is one of the main public safety issues during stormwater monitoring.</p>
+                    
+                    <p>In the video below, you will learn how to create an object detection model by labeling objects. The video initially shows how to label a vehicle and flooding object and later uses a trained deployed model to auto-label the entire data set. This is a <span class="tblue"><b>unique feature</b></span> of MVI. In the real world, based on your scenario, you will train the model with objects that you think are appropriate for detection and this might result in some false positives (a false positive result is when IBM Maximo Visual Inspection labels an image when it should not have -  for example, detecting an A/C unit on top of a building as 'vehicle' in the drone video). The users have to create new labels (e.g 'A/C unit') to re-train the model to avoid false positives. Determining what objects to label can be an iterative effort, and is often based on an understanding of what type of object is present in the images that you are using in order to train the model.</p>
+
+                    </div>
+
+                    <p>Below is a video walkthrough of the data prepation process that explains step-by-step how the user can navigate through the MVI interface, starting immediately after data set creation. The video is being served via <span class="tblue"><b>Watson Media’s Video Streaming service</b></span>, and you should  notice that <b>Closed captioning</b> has been provided. (You can click <b>"CC"</b> on the video to enable/disable).</p>
+
+                    <p><i>HINT: If text in the video is difficult to read, you can make the video <b>fullscreen</b> and/or click <b>"HD"</b> and select the <b>highest quality</b>.)</i></p>
+
+                    <iframe src="https://video.ibm.com/embed/recorded/129537174?showtitle=false" style="border: 0;" webkitallowfullscreen allowfullscreen frameborder="no" width="1000" height="630" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    <br/><br/>
+
+                    <div id="q1_2_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you watched this video, hopefully you were able to identify these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div>
+                    <br/>
+                    <p> For full details of this step, you can also reference the corresponding section in the <a href="https://www.ibm.com/support/knowledgecenter/SSRU69_8.0.0/base/vision_label.html" target="_blank">MVI knowledge center</a>.</p>
+                </div>
+
+
+                <!-- 1.3 -->
+                <div id="sec_1_3">
+                    <h2>
+                        <a name="1_3">1.3 IBM Maximo Visual Inspection: Model training</a>
+                    </h2>
+                    <div class="sectionTitle">1.3.1</div>
+
+                    <p>Once the user has annotated the desired objects via labels within the frames in the data set, the user is now ready to use those labeled frames to train the MVI model. A model is simply a set of tuned algorithms and that produces a predicted output. Models are trained based on the input that is provided by a data set to classify images or video frames or find objects in images or video frames. There are additional training concepts and terminology involved (iteration, batch, batch size, epoch, etc.), but it is not necessary for a user to become an expert in these concepts within MVI to produce a model. </p>
+
+                    <p>Below is a video walkthrough of the Train Model process that explains step-by-step how the user can navigate through the MVI interface, starting immediately after the Prepare Data has been performed to define the objects to be detected. The video is being served via <span class="tblue"><b>Watson Media’s Video Streaming service</b></span>, and you should  notice that <b>Closed captioning</b> has been provided. (You can click <b>"CC"</b> on the video to enable/disable).</p>
+
+                    <p><i>HINT: If text in the video is difficult to read, you can make the video <b>fullscreen</b> and/or click <b>"HD"</b> and select the <b>highest quality</b>.)</i></p>
+                   
+
+                    <iframe src="https://video.ibm.com/embed/recorded/129537175?showtitle=false" style="border: 0;" webkitallowfullscreen allowfullscreen frameborder="no" width="1000" height="630" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    
+                    <br/><br/>
+
+                    
+                     <div id="q1_3_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you watched this video, hopefully you were able to identify these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div>
+                    <br/>
+                    <p> For full details of this step, you can also reference the corresponding section in the <a href="https://www.ibm.com/support/knowledgecenter/SSRU69_8.0.0/base/vision_train.html" target="_blank">MVI knowledge center</a>.</p>
+                </div>
+
+                <!-- 1.4 -->
+                <div id="sec_1_4">
+                    <h2>
+                        <a name="1_4">1.4 IBM Maximo Visual Inspection: Deploy the model</a>
+                    </h2>
+                    <div class="sectionTitle">1.4.1</div>
+
+                    <p>Once the user has trained the model with  the desired objects via labels within the frames in the data set, the user is now ready to deploy that model to create a unique API endpoint based on that model for inference operations. The deploy process was designed such that it can be executed via a single click. Once deployed, external applications (such as the Stormwater Management function within our Remote Drone Console) can programmatically interact with the MVI model API via the associated <b>API key</b> and <b>API endpoint</b>.</p>
+
+                    <p>Below is a video walkthrough of the Deploy Model process that explains step-by-step how the user can navigate through the MVI interface to deploy and test the model, starting immediately after the model was trained. The video is being served via <span class="tblue"><b>Watson Media’s Video Streaming service</b></span>, and you should  notice that <b>Closed captioning</b> has been provided. (You can click <b>"CC"</b> on the video to enable/disable).</p>
+
+                    <p><i>HINT: If text in the video is difficult to read, you can make the video <b>fullscreen</b> and/or click <b>"HD"</b> and select the <b>highest quality</b>.)</i></p>
+
+                    <iframe src="https://video.ibm.com/embed/recorded/129537176?showtitle=false" style="border: 0;" webkitallowfullscreen allowfullscreen frameborder="no" width="1000" height="630" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    
+                    <br/><br/>
+
+                    <div id="q1_4_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you watched this video, hopefully you were able to identify these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div>
+                    <br/>
+                    <p> For full details of this step, you can also reference the MVI knowledge center about <a href="https://www.ibm.com/support/knowledgecenter/SSRU69_8.0.0/base/vision_deploy.html" target="_blank">deployment</a> and <a href="https://www.ibm.com/support/knowledgecenter/SSRU69_8.0.0/base/vision_test.html" target="_blank">testing</a>.</p>
+                </div>
+
+                 <!-- 1.5 -->
+                <div id="sec_1_5">
+                    <h2>
+                        <a name="1_5">1.5 IBM Maximo Visual Inspection: Using the model</a>
+                    </h2>
+    
+                    <div class="sectionTitle">1.5.1</div>
+                     <table class="section_withImage">
+                            <tbody>
+                            <tr>
+                            <td style="vertical-align: top">
+                                <p>As you saw in previous walkthroughs, IBM Maximo Visual Inspection (MVI) is a powerful tool that enables even non-technical users to create  and deploy custom AI models that can then be used to perform visual analytics on images or video.   After deploying the model, you saw that it can be tested within the MVI interface, but it is important to consider how that model can be leveraged by external applications. For example, our  Remote Drone Console Application will use the MVI API to detect objects from the drone images during a weather incident and then use those insights to facilitate situational awareness and raise alerts about potential threats from a public safety context. </p>
+
+                    <p>In this next step,  a test page has been created in order for you to explore how an external  application can interact with  IBM Maximo Visual Inspection to identify objects from an image. The test page will contain various activities that will demonstrate IBM MVI capabilities, in addition to further information on the service and how the test page was created.</p>
+                            </td>
+                            <td>
+                                <img class="rightFloat" src="./img/1_5_flow.png"><br/>
+                                    <p style="text-align:center">
+                                    <a href="./img/1_5_flow.png" target="_blank">View full size diagram</a>
+                                    </p>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+
+                            <br/><br/>
+                            <p><span class="tblue"><b>Click the blue button below</b></span> to navigate to the test page in a new tab. Once you have completed all the activities on the test page, it will prompt you to <span class="tblue"><b>return to these instructions</b></span>. Click the <b>checkbox</b> underneath the button to move on when you are ready. </p>
+                            <br/><br/>
+                    
+
+                    <div class="bluebutton" onclick="window.open('http://maximo-query-ui-sat-git-lab-4-admin.dronelabs-ed9112eb83c761afd4c566b0882eaa3e-0000.us-south.containers.appdomain.cloud/','_blank')">Click here to go to the <b>IBM Maximo Visual Inspection test page</b> and complete the activities<br/><i>(Opens in a new tab)</i> </div>
+
+                    <br/><br/>
+                    <p id="testpageConfirm">
+                        <input type="checkbox" id="testpageComplete" onclick="testpageCompleted()"> I have completed the above activities on the test page.</p>
+
+
+                        <div id="hidden_1_5_2" style="display: none"> 
+                            <div class="sectionTitle">1.5.2</div>
+                            Thank you for completing the activities on the IBM Maximo Visual Inspection test page!<br/><br/>
+
+                             <div class="keypointsvid smalltext">
+                        Before we move on, let’s spend a moment to recap what has been covered:<br/><br/>
+                        ✅ Consideration of how video analytics can help Stormwater Operations users to derive insights from drone images and other sources<br/>
+                        ✅ Introduction to Maximo Visual Inspection, its architecture, and its alignment within the Maximo Application Suite.<br/>
+                        ✅ Capabilities of MVI, and overall steps required to create a data set, prepare/label the data, train the model and deploy <br/>
+                        ✅ Example hybrid cloud flow between a simple test application hosted in an OpenShift cluster within IBM Cloud SBaaS and the Maximo Visual Inspection instance hosted in an OpenShift cluster in the IBM <span class="UPDATE3">GIS</span> Private Cloud.<br/>
+                        ✅ Some exposure to how a program can send images to the MVI API, and parse the results to overlay on the image (and/or to be used to trigger alerts). <br/>
+
+                    </div>
+                    <p>Later in Step 3 of this lab, you’ll be able to experience how this MVI model can be part of a larger application as you interact with it from an industry context, via the new Stormwater Operations Monitor function within the Remote Drone Console application.</p>
+                        </div>
+
+                        
+
+                    
+
+
+                </div>
+    
+    
+    
+                <!-- Finish Step 1 -->
+                <div id="sec_finishStep1">
+                    <h2>
+                        <a name="finishStep1">Finish Step 1</a>
+                    </h2>
+                    <div class="sectionTitle">You completed Step 1! 🎉</div>
+                   
+                    <div class="rect magentaRect single">
+                        <div class="in">
+                            Step 1
+                            <b>Completed</b>
+                            <br/>
+                            <br/>
+                            <div class="list">
+                                ✅ IBM Maximo Visual Inspection: Getting started <br/>
+                                ✅ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                                ✅ IBM Maximo Visual Inspection: Model training<br/>
+                                ✅ IBM Maximo Visual Inspection: Deploy the model<br/>
+                                ✅ IBM Maximo Visual Inspection: Using the model <br/>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        In the next step, you will explore IBM Maximo Monitor and its IoT Tool (Watson IoT Platform). You will consider how Stormwater Management Operators can also leverage sensor data (weather, water/stream, etc.) with the help of IBM’s capabilities available in Maximo Monitor to deliver insights from raw measurements.
+
+                    </p>
+                    <div class="timeline">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="step completed">
+                                        <div class="title">Step 1
+                                            <b>Completed ✅</b>
+                                        </div><br/>
+                                        ☑ IBM Maximo Visual Inspection: Getting started <br/>
+                                        ☑ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                                        ☑ IBM Maximo Visual Inspection: Model training<br/>
+                                        ☑ IBM Maximo Visual Inspection: Deploy the model<br/>
+                                        ☑ IBM Maximo Visual Inspection: Using the model <br/>
+                                        <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step next">
+                                        <div class="title">Step 2
+                                            <b>Next</b>
+                                        </div>
+                                         ☑ Maximo Monitor: IoT Tool Device creation <br/>
+                                         ☑ Maximo Monitor: IoT Tool Interface definition <br/>
+                                         ☑ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                                         ☑ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                                         ☑ Review Maximo Monitor & IoT Tool <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step">
+                                        <div class="title">Step 3</div>
+                                        <br/> ☑ Explore Remote Drone Console Application Stormwater Operations
+                                        <br/> ☑ Final Notes
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nextStepBar" onClick="moveTo('s2')">
+                        Ready? Move on to Step 2 →
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--- Begin Step 2 -->
+    <div id="step2" class="main">
+        <div id="menu">
+            <a href="#step2" class="start">Step 2</a>
+            <a href="#2_1">2.1 Maximo Monitor: IoT Tool Device creation</a>
+            <a href="#2_2">2.2 Maximo Monitor: IoT Tool Interface definition</a>
+            <a href="#2_3">2.3 Maximo Monitor: IoT Tool Device connection & Device simulation</a>
+            <a href="#2_4">2.4 Maximo Monitor: Dashboards and alert triggers for device monitoring</a>
+            <a href="#2_5">2.5 Review Maximo Monitor & IoT Tool</a>
+            <a href="#finishStep2" class="end">Finish Step 2</a>
+        </div>
+        <div id="content">
+            <div id="main">
+
+                <div id="sec_step2">
+                    <h1>
+                        <a name="step2 UPDATE3">Step 2: Walkthrough how Maximo Monitor and IoT Platform can bring insights from sensors</a>
+                    </h1>
+
+                     <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:left;vertical-align: top;">
+                                        <p>
+                                            Once again, recall that in <b>previous drone labs</b>, you were able to view the <b>data</b> from a drone, operated within the <span class="UPDATE3">GIS</span> Private Cloud environment via the Remote Drone Console application running in IBM Cloud SBaaS <i>(image on the right)</i>.
+                                            </p>
+                                            
+                                            <p> 
+                                                That drone data included <b>images</b> captured by the drone camera, along with various <b>telemetry</b> and <b>measurements</b>. Remember that part of that drone data included the GPS coordinates, which were used to query a Cloudant database for sensor data (raw measurements) that filtered based on a geo-fenced area around the drone location. If you would like to reread the previous lab sections on how sensors were used based on drone location, you can go to <a href="https://pages.github.ibm.com/dallas-gsc-gov/dronelab2/" target="_blank">https://pages.github.ibm.com/dallas-gsc-gov/dronelab2/</a> and review <b>Step 3.1</b> and <b>Step 4.3.2</b>. <i>Note that in the step after this, you will re-visit the remote drone console application as well.</i>
+                                        </p>
+
+                                        <p>
+                                            Our Remote Drone Console Operators can further gain insights from these type of sensors using <span class="tblue"><b>IBM Maximo Monitor</b></span> to monitor them remotely in order to maintain their health and to evaluate the measurements and raise alerts as required. <b>IBM Maximo Monitor</b>, with its associated <b>IoT Tool (Watson IoT Platform)</b> includes capabilities to allow users to create assets, define interfaces, make the connection, and monitor output. There are many benefits to using this platform – with a lot of data coming in quickly, there’s a need to get actionable insights to detect anomalies and visualize patterns to make the right decisions.
+                                            </p>
+
+                                        <p>
+                                            In our stormwater management use case, you can imagine how critical it is for operators to be able to maintain some level of situational awareness. They must be able to assess risks during disruptive weather events when dangerous conditions can impact traffic and directly threaten the safety of citizens and first responders. In this step, you will explore IBM Maximo Monitor and its IoT Tool (Watson IoT Platform) in the context of weather and water/stream sensors  and ultimately consider how its powerful analytics can be leveraged to raise insights about changing conditions (raising water, increasing wind speed, etc.) to help assess and prioritize the public safety response.  
+                                            </p>
+
+                                    </td>
+                                    <td style="vertical-align: top;">
+                                        <img src="./img/1_dronelab2UI.png" class="sideImage_left_tb" /><br />
+                                         <img src="./img/2_flow.png" class="sideImage_left_tb" style="border:1px solid #ccc"/><br/>
+                                         <div style="text-align:center"><a href="./img/2_flow.png" target="_blank">View full size diagram</a></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/><br/>
+
+                            <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h2>More about IBM Maximo Monitor</h2>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left" colspan="2"> 
+                                            <p>You recall that Maximo Monitor is just one of the powerful capabilities within the overall Maximo Application Suite. Maximo Monitor is a solution that enables connectivity to devices and operational technology systems and allows for no-code application of analytics and AI-based anomaly detection, as well as easy building and configuring of custom dashboards. This solution empowers operations and maintenance teams to remotely monitor assets and optimize operational runtime. With these capabilities, teams can learn the root cause of the alerts and perform remedial action. </p>
+                                            <p>Maximo Monitor provides personnel with a visualization and anomaly detection for current and historical trending data through historians, supervisory control, and data acquisition (SCADA) systems, and Internet of Things (IoT) sensors. Its drill-down capabilities and hierarchical navigation, coupled with alerts and a prebuilt customizable dashboard, can increase operational visibility by aggregating and analyzing data from a broad range of sources. </p>
+                                            </td>
+                                            </tr>
+                                    <tr>
+                                         <td>
+                                            <img src="./img/mas_monitor.png" class="sideImage_left_tb" /><br />
+                                        </td>
+                                        <td style="text-align:left">
+                                        
+                                        
+                                        <p>Maximo Monitor enables scaling of operational insights across departments, facilities, and geographies by using a low-code/no-code interface with a modern and customizable dashboard.  Through this set of capabilities, Maximo Monitor enables operations and maintenance leaders to obtain visibility of critical equipment and respond quickly to problems to reduce downtime. The configurable rules-based alerts, anomaly detection, and the capability to drill down into root cause provide teams with tools for intelligent intervention. This feature set also enables reliability engineers to better understand historical trends and supplies them with the capability to view historical data for forensic analysis of failure trends. </p>
+
+                                        <p>Read about some Maximo Monitor use cases and demos <a href="https://www.ibm.com/products/maximo-remote-monitoring/demos/use-cases" target="_blank">here</a>.</p>
+
+                                        </td>
+                                       
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/><br/>
+
+                            <div class="caplist">
+                                <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left" class="smalltext">
+                                            <p><b>Maximo Monitor</b> includes the following key features: <br/>
+                                        - A <a href="https://www.ibm.com/support/knowledgecenter/SSQR84_8.0.0/iot/developing/iot_platform_mas.html?view=kc" target="_blank">platform component</a>, known as <b>IoT Tool</b>, for connecting and registering devices.<br/>
+                                        - A <a href="https://www.ibm.com/support/knowledgecenter/SSQR84_8.0.0/iot/developing/develop_mas.html?view=kc" target="_blank">data store component</a> for storage of data.<br/>
+                                        - An <a href="https://www.ibm.com/support/knowledgecenter/SSQR84_8.0.0/iot/analytics/as_overview.html?view=kc" target="_blank">analytics component</a> for performing calculations, anomaly detection, creating service requests, and alerting.<br/>
+                                        - <a href="https://www.ibm.com/support/knowledgecenter/SSQR84_8.0.0/iot/dashboard/monitoring.html?view=kc" target="_blank">Configurable dashboards</a> for monitoring KPIs, anomalies, and alerts.<br/>
+                                        </p>
+                                        
+                                        </td>
+                                         <td>
+                                            <img src="./img/2_monitordiagram.png" class="sideImage_right_lrg" /><br />
+                                        </td>
+
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                                
+                            </div>
+                            
+                            <br/><br/>
+                       
+                        <table class="section_withImage">
+                            <tbody>
+                            <tr>
+                            <td style="vertical-align: top">
+                                <p><b>Architecture overview</b><br/>
+                                Maximo Monitor is built on the platform and analytics components of Watson IoT Platform.<br/><br/>
+                                
+                                As an application in Maximo Application Suite, Maximo Monitor provides an end-to-end cloud-like experience on a self-managing OpenShift platform.<br/><br/>
+                                
+                                The services that make up Maximo Monitor support connecting, storing, analyzing, monitoring, and managing data. The Maximo Application Suite framework, which is deployed on a Red Hat OpenShift cluster, handles back-end operations, such as user management, workspace management, application deployment, single-sign on and session management, and application entitlement.</p>
+
+                            </td>
+                            <td>
+                                <img class="rightFloat" src="./img/2_architecture.png">
+                                <div style="text-align:center">
+                                    <a href="./img/2_architecture.png" target="_blank">View full size diagram</a>
+                                    </div>
+
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+
+                            <br/><br/>
+
+                            <div class="block UPDATE3">
+                                <table class="section_withImage">
+                                    <tbody>
+                                        <tr><td colspan="2"><h2>A Quick Note on Flow Volume Sensors:</h2></td></tr>
+                                        <tr>
+                                            <td>
+                                                <img class="leftFloat_h" src="./img/flowvolume.png">
+                                                </td>
+                                                <td style="vertical-align: top">
+                                Flow volume sensors help to monitor the behavior of water in streams/rivers by measuring the volume of liquid moving through an area. This measurement is reported in the U.S as cubic feet per second (cfs).  One cubic foot of water is 7.48 gallons of water. A gallon of water weighs 8.35 pounds. So, one cubic foot of water weighs over 62 pounds. From the above example, a flow of 1,000 cfs means <b>over 62,000 pounds of water is flowing downstream every second</b>! Information on flows in cubic feet per second can be found online at the <a href="https://waterwatch.usgs.gov/?id=ww_current" target="_blank">U.S Geological Survey</a>.</p>
+                                
+                                <p>You can even see an <b>example of a flow volume sensor reading</b> from the DFW area <a href="https://cs-029.onerain.com/sensor/index.php?site_id=409&site=0f1db7f2-ce7e-40dd-a80b-388abd2bff02&device_id=2&device=049d5813-c703-4f49-bd6a-225e0dfd9e76&order_reading=reading&sort=ASC" target="_blank">here</a>, which is leveraged by actual stormwater management operators when trying to assess rapid changes in river/stream flow that can be an indicator of potential flood risk. In fact, this flow volume sensor's attributes and example sensor readings are actually leveraged in the sections that follow during the setup of the device connections and monitoring within Maximo Monitor and its IoT Tool.
+                                </p>
+                                </td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                
+
+
+                            </div>
+                            
+                            <div class="block">
+
+                            <img class="standardImage" src="./img/2_foursteps.png">
+                            <br/><br/>
+                            </div>
+
+
+                    
+                
+ 
+                    <div class="whole">
+                        <div class="rect blueRect">
+                            <div class="in">
+                                Technologies Used
+                                <br/>
+                                <img src="./img/monitor.png" />
+                            </div>
+                        </div>
+                
+                        <div class="rect magentaRect">
+                            <div class="in">
+                                Your Tasks for Step 2
+                                <br/>
+                                <br/>
+                                <div class="list">
+                                    ✅ Maximo Monitor: IoT Tool Device creation <br/>
+                                ✅ Maximo Monitor: IoT Tool Interface definition <br/>
+                                ✅ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                                ✅ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                                ✅ Review Maximo Monitor & IoT Tool <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="timeline">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="step completed">
+                                        <div class="title">Step 1
+                                            <b>Completed ✅</b>
+                                        </div>
+                                        ☑ IBM Maximo Visual Inspection: Getting started <br/>
+                                        ☑ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                                        ☑ IBM Maximo Visual Inspection: Model training<br/>
+                                        ☑ IBM Maximo Visual Inspection: Deploy the model<br/>
+                                        ☑ IBM Maximo Visual Inspection: Using the model <br/>
+                                        <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step inprogress">
+                                        <div class="title">Step 2
+                                            <b>In Progress</b>
+                                        </div>
+                                         ☑ Maximo Monitor: IoT Tool Device creation <br/>
+                                         ☑ Maximo Monitor: IoT Tool Interface definition <br/>
+                                         ☑ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                                         ☑ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                                         ☑ Review Maximo Monitor & IoT Tool <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step">
+                                        <div class="title">Step 3</div>
+                                        <br/> ☑ Explore Remote Drone Console Application Stormwater Operations
+                                        <br/> ☑ Final Notes
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                </div>
+
+                <!-- 2.1 -->
+                <div id="sec_2_1">
+                    <h2>
+                        <a name="2_1">2.1 Maximo Monitor: IoT Tool Device creation </a>
+                    </h2>
+
+                    <div class="sectionTitle">2.1.1</div>
+                    
+                    <p>Given the frequency and volume of sensor data that is available, it is crucial to manage and monitor the sensors and their associated measurements. IBM Maximo Monitor and its IoT Tool, with its proven approach and  maturity, were designed to help operators maintain a healthy ecosystem of sensors and evaluate the resulting measurement data in a format that is intuitive for their needs. In the Stormwater Operations context, we will start by looking at a flow volume sensor that would be common to monitor the behavior of water in streams/rivers. For example, flow volume sensors can help measure when the volume of water <span class="UPDATE3">is</span> moving through an area at an increased rate, thus making a river unsafe to travel on/across. </p>
+
+                    <p>Below is a video walkthrough of the Device Creation process that explains step-by-step how the user can navigate through the Maximo Monitor’s IoT Tool  interface, starting immediately after logging in. The video is being served via <span class="tblue"><b>Watson Media’s Video Streaming service</b></span>, and you should  notice that <b>Closed captioning</b> has been provided. (You can click <b>"CC"</b> on the video to enable/disable).</p>
+
+                    <p><i>HINT: If text in the video is difficult to read, you can make the video <b>fullscreen</b> and/or click <b>"HD"</b> and select the <b>highest quality</b>.)</i></p>
+
+                    <iframe src="https://video.ibm.com/embed/recorded/129510755?showtitle=false" style="border: 0;" webkitallowfullscreen allowfullscreen frameborder="no" width="1000" height="630" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    <br/><br/>
+
+                        <div id="q2_1_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you watched this video, hopefully you were able to identify these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div>
+                    <br/>
+                    <p> For full details of this step, you can also reference the knowledge center about creating/registering the device <a href="https://www.ibm.com/support/knowledgecenter/SSQP8H/iot/guides/micro-connect.html" target="_blank">here</a>.</p>
+
+                </div>
+
+                <!-- 2.2 -->
+                <div id="sec_2_2">
+                    <h2>
+                        <a name="2_2">2.2 Maximo Monitor: IoT Tool Interface definition</a>
+                    </h2>
+                    <div class="sectionTitle">2.2.1</div>
+
+                    <p>Once you have a device type and registered device with token, you can create a physical and logical interface for the device. The physical interface represents the actual data structure of the data coming out from the device. The logical interface creates the application-specific information for an end application. Again, we will continue to use the Flow Volume sensor to consider this sensor within the stormwater operations context.</p>
+
+                    <p>Below is a video walkthrough of the Interface Definition process that explains step-by-step how the user can navigate through the Maximo Monitor’s IoT Tool  interface to collect and store data. The video is being served via <span class="tblue"><b>Watson Media’s Video Streaming service</b></span>, and you should  notice that <b>Closed captioning</b> has been provided. (You can click <b>"CC"</b> on the video to enable/disable).</p>
+
+                    <p><i>HINT: If text in the video is difficult to read, you can make the video <b>fullscreen</b> and/or click <b>"HD"</b> and select the <b>highest quality</b>.)</i></p>
+
+                    <iframe src="https://video.ibm.com/embed/recorded/129510756?showtitle=false" style="border: 0;" webkitallowfullscreen allowfullscreen frameborder="no" width="1000" height="630" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <br/><br/>
+
+                    <div id="q2_2_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you watched this video, hopefully you were able to identify these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div>
+                    <br/>
+                    <p> For full details of this step, you can also reference the knowledge center about the device interface <a href="https://www.ibm.com/support/knowledgecenter/SSQP8H/iot/guides/micro-li.html" target="_blank">here</a>.</p>
+
+                </div>
+
+                <!-- 2.3 -->
+                <div id="sec_2_3">
+                    <h2>
+                        <a name="2_3">2.3 Maximo Monitor: IoT Tool Device connection & Device simulation</a>
+                    </h2>
+                    <div class="sectionTitle">2.3.1</div>
+                    
+                     <p>Once you have created and activated the device interface, you are ready to connect the device and test the incoming data through the interface. Mapping to our stormwater management context, we will use actual measurement output from a flow sensor device in the area as the basis for the steps that follow.</p>
+
+                    <p>Below is a video walkthrough of the Device Connection process that explains step-by-step how the user can navigate through the Maximo Monitor’s IoT Tool  interface to connect a device via the Device Simulator feature to test. The video is being served via <span class="tblue"><b>Watson Media’s Video Streaming service</b></span>, and you should  notice that <b>Closed captioning</b> has been provided. (You can click <b>"CC"</b> on the video to enable/disable).</p>
+
+                    <p><i>HINT: If text in the video is difficult to read, you can make the video <b>fullscreen</b> and/or click <b>"HD"</b> and select the <b>highest quality</b>.)</i></p>
+                    
+                    <iframe src="https://video.ibm.com/embed/recorded/129510757?showtitle=false" style="border: 0;" webkitallowfullscreen allowfullscreen frameborder="no" width="1000" height="630" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <br/><br/>
+
+                    <div id="q2_3_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you watched this video, hopefully you were able to identify these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div>
+                    <br/>
+                    
+
+                </div>
+
+                <!-- 2.4 -->
+                <div id="sec_2_4">
+                    <h2>
+                        <a name="2_4">2.4 Maximo Monitor: Dashboards and alert triggers for device monitoring</a>
+                    </h2>
+                    <div class="sectionTitle">2.4.1</div>
+
+                     <p>Now that we have data flowing into our Maximo Monitor environment via the IoT Tool for a given sensor on a defined interface,  we want to be able to do something useful with the data.  Maximo Monitor makes it very easy to create alerts based on the data values, as well as to customize visualizations via dashboards.  In our stormwater use case, imagine being able to use a dashboard to monitor all relevant sensors from a common interface, showing trends and anomalies that quickly get the attention of the operator when needed.  Furthermore, imagine this same platform to trigger alerts and send to external systems (like the Remote Drone Console application’s Stormwater Management function) so that these sensor alerts can be seen alongside other insights to facilitate a more complete sense of situational awareness for the operator.</p>
+
+                    <p>Below is a video walkthrough of the Device Monitoring process that explains step-by-step how the user can navigate through the Maximo Monitor interface to monitor a device via dashboard and to create rules that can trigger alerts. The video is being served via <span class="tblue"><b>Watson Media’s Video Streaming service</b></span>, and you should  notice that <b>Closed captioning</b> has been provided. (You can click <b>"CC"</b> on the video to enable/disable).</p>
+
+                    <p><i>HINT: If text in the video is difficult to read, you can make the video <b>fullscreen</b> and/or click <b>"HD"</b> and select the <b>highest quality</b>.)</i></p>
+
+
+                    <iframe src="https://video.ibm.com/embed/recorded/129510758?showtitle=false" style="border: 0;" webkitallowfullscreen allowfullscreen frameborder="no" width="1000" height="630" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <br/><br/>
+
+
+                        <div id="q2_4_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you watched this video, hopefully you were able to identify these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div>
+                    <br/>
+                    
+                </div>
+                
+                
+                <!-- 2.5 -->
+                 <div id="sec_2_5">
+                    <h2>
+                        <a name="2_5">2.5 Review Maximo Monitor & IoT Tool</a>
+                    </h2>
+                    <div class="sectionTitle">2.5.1</div>
+                     <table class="section_withImage">
+                        <tbody>
+                            <tr>
+                                <td width="50%">
+                                    <p style="text-align: center">
+                                        <img class="sideImage" src="./img/2_foursteps.png" />
+                                    </p>
+                                </td>
+                                <td> <img class="sideImage" src="./img/2_monitordiagram.png" /></td>
+                                </tr></tbody></table>
+                    
+                    <div class="caplist">
+                        Before we move on, let’s spend a moment to recap:<br/><br/>
+                        In this step of the lab, hopefully you learned the following:<br/>
+                        ✅ Consideration of how Maximo Monitor can help Stormwater Management operators work with insights from sensor devices<br/>
+                        ✅ Introduction to Maximo Monitor and its IoT Tool (Watson IoT Platform), its architecture, and its alignment within the Maximo Application Suite.<br/>
+                        ✅ Capabilities of Maximo Monitor, and overall steps required when working with a new type of sensor device:<br/>
+                        &emsp;&emsp;&emsp; ✅ Use IoT Tool to to create and register a device type, define a physical and logical interface, connect and test the device (via Device Simulator)<br/>
+                        &emsp;&emsp;&emsp; ✅ Use Maximo Monitor to create alert criteria and summary data for the device data, and visualize via Dashboard<br/><br/>
+                    </div>
+
+                </div>
+
+                <!-- Finish Step 2 -->
+                <div id="sec_finishStep2">
+                    <h2>
+                        <a name="finishStep2">Finish Step 2</a>
+                    </h2>
+                    <div class="sectionTitle">You completed Step 2! 🎉</div>
+                    <div class="rect magentaRect single">
+                        <div class="in">
+                            Step 2 <b>Completed</b><br/><br/>
+                            <div class="list">
+                                ✅ Maximo Monitor: IoT Tool Device creation <br/>
+                                ✅ Maximo Monitor: IoT Tool Interface definition <br/>
+                                ✅ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                                ✅ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                                ✅ Review Maximo Monitor & IoT Tool <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        In the next step of this lab, you’ll be able to experience how the alerts and insights from Maximo Monitor can be consumed  as part of a larger application as you interact with it from an Industry context via new Stormwater Operations Monitor function within the Remote Drone Console application.
+                    </p>
+                    <div class="timeline">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="step completed">
+                                        <div class="title">Step 1 <b>Completed ✅</b></div><br/>
+                                        ☑ IBM Maximo Visual Inspection: Getting started <br/>
+                                        ☑ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                                        ☑ IBM Maximo Visual Inspection: Model training<br/>
+                                        ☑ IBM Maximo Visual Inspection: Deploy the model<br/>
+                                        ☑ IBM Maximo Visual Inspection: Using the model <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step completed">
+                                        <div class="title">Step 2 <b>Completed ✅</b></div><br/> 
+                                        ☑ Maximo Monitor: IoT Tool Device creation <br/>
+                                        ☑ Maximo Monitor: IoT Tool Interface definition <br/>
+                                        ☑ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                                        ☑ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                                        ☑ Review Maximo Monitor & IoT Tool <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step next">
+                                        <div class="title">Step 3 <b>Next</b></div><br/>
+                                        ☑ Explore Remote Drone Console Application Stormwater Operations <br/>
+                                        ☑ Final Notes <br/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nextStepBar" onClick="moveTo('s3')">
+                        Ready? Move on to Step 3 →
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--- Begin Step 3 -->
+    <div id="step3" class="main">
+        <div id="menu">
+            <a href="#step3" class="start">Step 3</a>
+            <a href="#3_1">3.1 Explore Remote Drone Console Application Stormwater Operations</a>
+            <a href="#3_2">3.2 Final Notes</a>
+            <a href="#finishStep3" class="end">Finish Step 3</a>
+        </div>
+        <div id="content">
+            <div id="main">
+
+                <div id="sec_step3">
+                    <h1>
+                        <a name="step3 UPDATE3">Step 3: Explore Stormwater Management Operations in the Remote Drone Console Application </a>
+                    </h1>
+
+                   <table class="section_withImage">
+                    <tbody>
+                    <tr>
+                    <td style="vertical-align: top;">
+                        <p>
+                            In the previous <b>Drone Labs</b>, you worked extensively with the containerized Remote Drone Console Application in the IBM Cloud SBaaS environment, and along the way learned about <b>Red Hat OpenShift</b> and <b>Cloud Integration</b> in a <b>Hybrid Multicloud context</b>.</p>  
+                        
+                        <p>
+                            In Drone Lab 1, the goal was to make you more comfortable with the relationship between <b>GitHub</b> and <b>RedHat OpenShift</b> on <b>IBM Cloud</b> (and optionally on <b>AWS Cloud</b>) and provide a better understanding of the overall process to take an application from code/configuration all the way through to its containerized cloud deployment. Along the way, hopefully you were able to get a preliminary hands-on experience with the concept of a cloud “operator” that can gain some benefit via the Remote Drone Console Application (in the IBM Cloud) to visualize and interact with drones in a remote setting.</p>
+                            
+                            <p>In Drone Lab 2, you focused on learning how the various IBM Cloud Integration services (<b>Secure Gateway, Cloud Satellite,  API Connect, and App Connect</b>) can be leveraged to enable an application in a hybrid cloud context, and thus augment its security, functionality, and connectivity. You also explored how these services could be put to use within the Remote Drone Console Application to “connect” to remote resources through the use of the above services.  After connection to a remote drone environment, you were able to view the images, telemetry, measurements, and even GPS from a drone, and then view readings from sensors that were located within a drone’s geospatial proximity. With the Remote Drone Console Application, you interacted as an operator to see how they could benefit from having access to the (raw) information collected via the drone to help them monitor a situation.</p>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <img class="rightFloat" src="./img/labflow.png">
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
+
+                    <div class="block">
+                        <p>
+                            As you prepare to revisit the Remote Drone Application again in this lab, you now know that IBM’s capabilities can further benefit the “operator” of this cloud application by infusing AI and analytics into the application and thus bringing forth insights from the raw drone and sensor data that can be applied within a government industry context around managing stormwater during a weather event. Using the technologies and approaches within Maximo Application Suite’s <b>Visual Inspection</b> and <b>Monitor</b> that you learned in this lab’s previous steps, you will now get hands-on experience as an operator that can leverage the new <span class="tblue"><b>Stormwater Operations Monitor</b></span> interface to gain situational awareness, assess risk, and coordinate mitigation response to dangerous flooding conditions. By tailoring the interface with industry context, you will see the concept of the Remote Drone Console Application become a persona-based solution for the operator, with access to video and analytics that can be compared with alerts from sensors and other sources, and then assessed within a geospatial context. From there, the operator has the tools and insights necessary to devise a mitigation/response plan using additional support from guided workflows, predictive models, and virtual support.</p>
+                        <p>
+                            As you progress through this step of the lab, you will empathize with the operator persona during a weather event, and <b>experience</b> how the Remote Drone Console Application’s new Stormwater Operations Monitor capabilities can help to make use of the insights that surfaced from the analysis and processing of the drone and sensor data.  Within the solution interface, you will see how an operator can leverage those insights to understand the risks that emerge during the unfolding situation and utilize AI-driven guidance to help plan and coordinate the response.</p></div>
+
+
+
+
+                    <div class="whole">
+                        <div class="rect blueRect">
+                            <div class="in">
+                                Technologies in Focus
+                                <br/>
+                                <img src="./img/consoleapp_icon.png" /><br/>
+                                <img src="./img/visualinspection.png" /><br/>
+                                <img src="./img/monitor.png" /><br/>
+                            </div>
+                        </div>
+
+                        <div class="rect magentaRect">
+                            <div class="in">
+                                Your Tasks for Step 3 <br/><br/>
+                                <div class="list">
+                                    ✅ Explore Remote Drone Console Application Stormwater Operations <br/>
+                                    ✅ Final Notes <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="timeline">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="step completed">
+                                        <div class="title">Step 1 <b>Completed ✅</b></div><br/>
+                                        ☑ IBM Maximo Visual Inspection: Getting started <br/>
+                                        ☑ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                                        ☑ IBM Maximo Visual Inspection: Model training<br/>
+                                        ☑ IBM Maximo Visual Inspection: Deploy the model<br/>
+                                        ☑ IBM Maximo Visual Inspection: Using the model <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step completed">
+                                        <div class="title">Step 2 <b>Completed ✅</b></div><br/>
+                                         ☑ Maximo Monitor: IoT Tool Device creation <br/>
+                                         ☑ Maximo Monitor: IoT Tool Interface definition <br/>
+                                         ☑ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                                         ☑ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                                         ☑ Review Maximo Monitor & IoT Tool <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step inprogress">
+                                        <div class="title">Step 3 <b>In Progress</b></div><br/>
+                                        ☑ Explore Remote Drone Console Application Stormwater Operations <br/>
+                                        ☑ Final Notes <br/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                </div>
+
+                <!-- 3.1 -->
+                <div id="sec_3_1">
+                    <h2>
+                        <a name="3_1">3.1 Explore Remote Drone Console Application Stormwater Operations</a>
+                    </h2>
+
+                    <div class="sectionTitle">3.1.1</div>
+                    
+
+                    <p>
+                        In this step, you will navigate to the Remote Drone Console Application using the personalized button link provided underneath this brief introduction. The Remote Drone Console Application interface should look familiar to you from your experience in previous labs. At the bottom, find the ”<span class="tblue"><b>Stormwater Operations Monitor”</b></span> tile under the <b>Additional Operations</b> section. This section, as mentioned in Drone Lab 1, contains various relevant operations that a public safety operator would need to interact with. In this case, you will explore a stormwater use case and how the previous steps led to the analytics demonstrated in this view.  In previous versions of the lab, this function was not yet available.
+                        </p>
+                        
+                        <p>
+                            Once you’ve selected this tile, follow the instructions on the page. This view contains instructions on how to complete the activity regarding Stormwater Operations. </p>
+
+                            <img class="standardImage" src="./img/3_1_steps.png"><br/><br/><br/>
+                        
+                        <div class="goldlist">
+                            You will: <br/><br/>
+                        1. Play the <b>video</b> that contains the <b>raw video + video analytics</b> applied to the raw video (using <b>IBM Maximo Visual Inspection</b>)<br/>
+                        2. <b>Pause</b> the video at any point, or move the time slider to move the video backward and forward. <span class="UPDATE3">Notice that the video time is shown directly to the right of the Play/Pause button.</span><br/>
+                        3. As you see incoming <b>alerts</b> and <b>actions</b>, you can click the item to see more details. <i>(You will notice alerts from a variety of sources, including sensors that have been analyzed by <b>IBM Maximo Monitor</b>)</i> <span class="UPDATE3">Note: You can click the image within an alert's description to view its full size version.</span><br/>
+                        4. Review the <b>location</b> of the drone on the map, and see the other layers available<br/>
+                        5. Click on each of the <b>four lightbulbs</b> on the four widgets on this view to read more information.
+                        </div>
+
+                        
+                   
+
+                        <br/><br/>
+                            <p>Ready? <span class="magenta"><b>Click the gold button below</b></span> to navigate to the Remote Drone Console Application in a new tab. <span class="UPDATE3">Once you have completed the activities, whenever you are <span class="magenta"><b>done exploring</b></span></span>, you can <span class="tblue"><b>return to these instructions</b></span>. Click the <b>checkbox</b> underneath the button to move on when you are ready. </p>
+                            <br/><br/>
+
+                    <a href="http://lab4-dronelab-ui-route-YOURLABNAME-2021-lab-4.mycluster-dal12-b-632406-ed9112eb83c761afd4c566b0882eaa3e-0000.us-south.containers.appdomain.cloud/" id="goldbutton" class="goldbutton smalltext" target="_blank">Click here to go to <b><span class="defaultConsoleURL">http://lab4-dronelab-ui-route-YOURLABNAME-2021-lab-4.mycluster-dal12-b-632406-ed9112eb83c761afd4c566b0882eaa3e-0000.us-south.containers.appdomain.cloud/</span></b> and complete the activities <i>(Opens in a new tab)</i> </a>
+
+                    <br/><br/>
+                    <p id="stormAppConfirm">
+                        <input type="checkbox" id="stormAppComplete" onclick="stormAppCompleted()"> I have completed the above activities on the Stormwater Operations of the Remote Drone Console Application.</p>
+
+
+                        <div id="hidden_3_1_2" style="display: none"> 
+                            <div class="sectionTitle">3.1.2</div>
+                            Thank you for completing the activities on the Stormwater Operations of the Remote Drone Console Application! <br/><br/>
+
+                             <div id="q3_1_area" class="keypointsvid smalltext">
+                        <div class="recaptitle">👉 Recap Activity</div>
+                        <p> As you interacted with the Remote Drone Console application, hopefully you were able to experience these <span class="magenta">key points</span>:<br/><i>Check all of the boxes before moving on.</i></p></div><br/><br/>
+                        </div>
+
+                </div>
+
+
+                <!-- 3.2 -->
+                <div id="sec_3_2">
+                    <h2>
+                        <a name="3_2">3.2 Final Notes</a>
+                    </h2>
+
+                    <div class="sectionTitle">3.2.1</div>
+
+
+                        <table class="section_withImage">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>Make sure you have completed all the activities (via the <span class="gold">gold button</span> above) before moving onto this step.</p>
+                                        <p>When you accessed the application, you may have noticed that the URL reflects an <b>IBM cloud endpoint</b>. In fact, this application was deployed for you in a project within an OpenShift Cluster in the IBM Cloud SBaaS. We provided the direct link to the application, but you could also navigate to IBM Cloud and find the project and application within the <span class="tblue"><b>mycluster-dal12-b3c.4x16</b> cluster in the <b>1500867 - IBM</b></span> organization. Here is a direct <a id="goldproj" href="#" target="_blank">link to your project in IBM Cloud SBaaS</a> if you want to see the deployment environment. </p>
+
+                    <p>You can review <a href="https://pages.github.ibm.com/dallas-gsc-gov/dronelab/" target="_blank">Drone Lab 1</a> for reference on the relationship between GitHub and OpenShift within IBM Cloud SBaaS, as well as the overall process of taking an application from code/configuration through to its containerized cloud deployment.</p>
+                                </td>
+                            <td>
+                                <img class="rightFloat" src="./img/console_storm_UI.png">
+                            </td>
+                        </tr>
+                        </tbody>
+                        </table>
+
+                    
+
+                    <p>
+                         This completes all the steps for Step 3 – <b>congratulations</b>! Please take a screenshot of the application interface and post it in the Slack channel along with any feedback on this lab. You may continue to finish this step and then move onto the Summary.
+                    </p>
+
+                    <div class="finalStep">
+                        <span class="yel">Post a screenshot</span><br> of the application interface<br>
+                        in the Slack channel <a href="https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/" target="_blank">#2021gsc_ibmcloudsandbox_stormwaterdronelab</a><br> <span class="smalltext">(Link also in the top right of this page)</span></div>
+
+                </div>
+
+                <!-- Finish Step 3 -->
+                <div id="sec_finishStep3">
+                    <h2>
+                        <a name="finishStep3">Finish Step 3</a>
+                    </h2>
+                    <div class="sectionTitle">You completed Step 3! 🎉</div>
+                    <p>
+                        You successfully navigated to your Remote Drone Console Application running in the IBM Cloud SBaaS, and found the new Stormwater Operations Monitor interface. There, you empathized with the role of an operator who is trying to mitigate the risks of an ongoing weather event in Coppell, TX. You experienced how the insights from IBM tools like Maximo Monitor and Maximo Visual Inspection can drive more informed situational awareness to make assessment of emerging risks/alerts and facilitate a more coordinated mitigation response plan.
+                    </p>
+                    <div class="rect magentaRect single">
+                        <div class="in">
+                            Step 3 <b>Completed</b><br/><br/>
+                            <div class="list">
+                                ✅ Explore Remote Drone Console Application Stormwater Operations <br/>
+                                ✅ Final Notes <br/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="step completed">
+                                        <div class="title">Step 1 <b>Completed ✅</b></div><br/>
+                                        ☑ IBM Maximo Visual Inspection: Getting started <br/>
+                                        ☑ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                                        ☑ IBM Maximo Visual Inspection: Model training<br/>
+                                        ☑ IBM Maximo Visual Inspection: Deploy the model<br/>
+                                        ☑ IBM Maximo Visual Inspection: Using the model <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step completed">
+                                        <div class="title">Step 2 <b>Completed ✅</b></div><br/>
+                                         ☑ Maximo Monitor: IoT Tool Device creation <br/>
+                                         ☑ Maximo Monitor: IoT Tool Interface definition <br/>
+                                         ☑ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                                         ☑ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                                         ☑ Review Maximo Monitor & IoT Tool <br/>
+                                    </td>
+                                    <td class="arrow">→</td>
+                                    <td class="step completed">
+                                        <div class="title">Step 3 <b>Completed ✅</b></div><br/>
+                                        ☑ Explore Remote Drone Console Application Stormwater Operations <br/>
+                                        ☑ Final Notes <br/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nextStepBar" onClick="moveTo('sum')">
+                        Ready? Move on to Summary →
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--- Begin Summary -->
+    <div id="summary" class="main">
+        <h2><span class="UPDATE3">GIS</span> Stormwater Drone Lab: Summary</h2>
+        <div class="timeline">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="step completed">
+                            <div class="title">Step 1 <b>Completed ✅</b></div><br/>
+                            ☑ IBM Maximo Visual Inspection: Getting started <br/>
+                            ☑ IBM Maximo Visual Inspection: Visual Annotation <br/>
+                            ☑ IBM Maximo Visual Inspection: Model training<br/>
+                            ☑ IBM Maximo Visual Inspection: Deploy the model<br/>
+                            ☑ IBM Maximo Visual Inspection: Using the model <br/>
+                        </td>
+                        <td class="arrow">→</td>
+                        <td class="step completed">
+                            <div class="title">Step 2 <b>Completed ✅</b></div><br/>
+                            ☑ Maximo Monitor: IoT Tool Device creation <br/>
+                            ☑ Maximo Monitor: IoT Tool Interface definition <br/>
+                            ☑ Maximo Monitor: IoT Tool Device connection & Device simulation <br/>
+                            ☑ Maximo Monitor: Dashboards and alert triggers for device monitoring <br/>
+                            ☑ Review Maximo Monitor & IoT Tool <br/>
+                        </td>
+                        <td class="arrow">→</td>
+                        <td class="step completed">
+                            <div class="title">Step 3 <b>Completed ✅</b></div><br/>
+                            ☑ Explore Remote Drone Console Application Stormwater Operations <br/>
+                            ☑ Final Notes <br/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <br/><br/>
+        <div class="block">
+            <div class="final_left">
+                <img class="sideImage" src="./img/lab_appoverview.png" />
+                <br/>
+                <a href="./img/lab_appoverview.png" target="_blank">View full size diagram</a>
+
+            </div>
+            <div class="final_right">
+                <p><b>Let’s review what we accomplished in this lab overall:</b> </p>
+
+                <p>
+                    First, we learned about the challenges city command center operators face as they  manage weather situations that endanger the public and put first responders at risk and considered how drone imagery and sensor measurements could be helpful inputs to help them gain situational awareness and assess risks during a storm event. </p> 
+                    
+                    <p>
+                        Next, we got some exposure the Maximo Application Suite, and specifically Visual Inspection (MVI) and Monitor capabilities.</p> 
+
+                    <p>
+                        In Step 1, we walked through how to create, train, and deploy a Maximo Visual Inspection object detection model, and then tested that model from a custom interface running in a hybrid cloud context. Throughout, we considered how operators could leverage insights from drone images that were processed via MVI in a stormwater scenario.</p> 
+
+                    <p>
+                        In Step 2, we experienced Maximo Monitor and its IoT Tool (Watson IoT Platform), and walked though how to setup a flow volume sensor (create new sensor type, define interfaces, connect/simulate device) and then configure alert thresholds, summary reports, and dashboards. Again, we considered how operators could monitor alerts or see trends from these sensors during stormwater scenario.</p> 
+
+                    <p>
+                        Finally, we got some hands-on interaction with the extended Stormwater Management functionality of our previous Remote Drone Console application.  There, we considered how MVI and Maximo Monitor can bring important insights into the operator’s the overall situational awareness during weather events by raising alerts based on detected objects in the drone video and from anomalies in the relevant sensor measurements.</p>   
+
+                    <p>
+                        The takeaway of this lab is to have an understanding the very common Government industry scenario of managing a public safety during a localized weather event that can potentially endanger citizens, property, and responders.  With the help of Maximo Application Suite’s Visual Inspection and Monitor capabilities, IBM can turn raw data into insights that can help stormwater management or command center operators to assess risk and then prioritize and coordinate response.  Hopefully, you also got more comfortable with MVI, Maximo Monitor, and the associated IoT tool, and learned that they have a very user-friendly approach with intuitive interface, and thorough documentation.</p>  
+
+                
+
+            </div>
+
+            <hr />
+
+
+        </div>
+        <div class="mid">
+            Thank you for taking time to complete <b><span class="UPDATE3">GIS</span> Stormwater Drone Lab</b>. <span class="blue">Did you enjoy this lab?</span> Please leave a comment in this lab’s <span class="purple">Slack channel</span> (link in the top right) and let us know!<br/><br/>
+            <table class="futureLabs">
+                <tbody>
+                    <tr class="header">
+                        <td>Lab Title</td>
+                        <td>Lab Description</td>
+                    </tr>
+                    <tr class="completed">
+                        <td>
+                            ✅ <b>Lab 1</b> Completed
+                        </td>
+                        <td>
+                            Building the drone application on a Multi-Hybrid cloud platform and using all the associated coding tools.
+                        </td>
+                    </tr>
+                     <tr class="completed">
+                        <td>
+                            <b>Lab 1 (AWS)</b> 
+                        </td>
+                        <td>
+                            Building the drone application on a Multi-Hybrid cloud platform and using all the associated coding tools within AWS cloud.
+                        </td>
+                    </tr>
+                    <tr class="completed">
+                        <td>
+                            ✅ <b>Lab 2</b> Completed
+                        </td>
+                        <td>
+                            Validate connectivity to resources in back-end private cloud, and test interaction with drone in remote private cloud location via app running in multi-hybrid cloud.
+                        </td>
+                    </tr>
+                    <tr class="completed">
+                        <td >
+                             ✅ <b>Stormwater Lab</b> Completed
+                        </td>
+                        <td>
+                            Apply visual recognition to detect/count vehicles and sensor API to monitor water/flooding in streams in order to reroute traffic and barricade unsafe conditions, in a specific geographic location.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mid">
+            The GIS Stormwater Drone Lab was created by the <b>IBM Global Industry Solutions Public Market</b> team in Dallas, TX.<br/>
+            Thank you to Romelia Flores, <span class="UPDATE3">Jenny Ang</span> and the SBaaS team, and Scott Knupp for their support on this lab.<br/><br/>
+            For more information on <span class="UPDATE3"><b>Global Industry Solutions</b></span>, what we do, and our pre-sales technical support for industry solutions, <br/>
+            visit <a href="https://ibm.biz/gscdallas" target="_blank">https://ibm.biz/gscdallas</a>.<br/> <br/>
+        </div>
+
+        <hr/>
+
+         <div class="midl UPDATE3">
+           <b>Related labs and collateral about this use case</b>:  <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5f112243551a9d2ccfaad860&type=template" target="_blank">Stormwater Commander Experience Lab</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5f11238c551a9d2ccfaad861&type=template" target="_blank">Stormwater Responder Experience Lab</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5f111965551a9d2ccfaad85d&type=template" target="_blank">Drone Lab 1</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5fab6aaabf28fe001ab505a3&type=template" target="_blank">Drone Lab 2</a> | <a href="https://gsc-w3-oneclick.mybluemix.net/solution/498" target="_blank">Stormwater prototype (<span class="UPDATE3">GIS</span> Solution Catalog)</a> <br/>
+           <b>Related labs and resources about this technology</b>: <a href="https://mam-hol.eu-gb.mybluemix.net/" target="_blank">Maximo Labs</a> <i>(separate sign up required)</i>
+           <br/><br/><br/>
+        </div>
+
+       
+    </div>
+    </div>
+    <!--- End Lab-->
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

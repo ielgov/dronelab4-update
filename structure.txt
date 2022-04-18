@@ -1,0 +1,177 @@
+
+
+Begin Lab
+1. Enable access to a service with Secure Gateway <br />
+2. Use API Connect to manage and expose a service’s APIs <br />
+3. Connect to another service with App Connect <br />
+4. Explore Remote Operations Console with new flows <br />
+Summary & Contacts
+
+
+Step 1
+1.1 Access IBM Cloud
+1.2 Access RedHat OpenShift cluster 
+1.3 Open RedHat OpenShift web console
+1.4 Setting up the Access Control List (ACL)
+1.5 Adding a Secure Gateway destination
+Finish Step 1
+
+
+Step 2
+2.1 Add a catalog
+2.2 Work with OpenAPI definitions
+2.3 Edit and publish API product
+2.4 Explore and test API
+Finish Step 2
+
+
+Step 3
+3.1 Explore sensor database
+3.2 Set up App Connect flow
+3.3 Start the API
+3.4 Try out the flow
+Finish Step 3
+
+
+Step 4
+4.1 Recap previous steps
+4.2 View configurations made for this lab
+4.3 Explore the drone viewer modal
+Finish Step 4
+
+
+
+<td class="step completed">
+<div class="title">Step 1 <b>Completed ✅</b></div><br />
+
+<td class="step next">
+<div class="title">Step 2 <b>Next</b></div><br />
+
+<td class="step inprogress">
+<div class="title">Step 1 <b>In Progress</b></div><br />
+
+
+<div class="timeline">
+ <table>
+  <tbody>
+   <tr>
+    <td class="step completed">
+     <div class="title">Step 1 <b>Completed ✅</b></div><br />
+     ☑ Access IBM Cloud <br />
+     ☑ Access RedHat OpenShift cluster  <br />
+     ☑ Open RedHat OpenShift web console <br />
+     ☑ Setting up the Access Control List (ACL) <br />
+     ☑ Adding a Secure Gateway destination <br />
+    </td>
+    <td class="arrow">→</td>
+    <td class="step completed">
+     <div class="title">Step 2 <b>Completed ✅</b></div><br />
+     ☑ Add a catalog<br />
+     ☑ Work with OpenAPI definitions <br />
+     ☑ Edit and publish API product <br />
+     ☑ Explore and test API <br />
+    </td>
+    <td class="arrow">→</td>
+    <td class="step completed">
+     <div class="title">Step 3 <b>Completed ✅</b></div><br />
+     ☑ Explore sensor database <br />
+     ☑ Set up App Connect flow <br />
+     ☑ Start the API <br />
+     ☑ Try out the flow <br />
+    </td>
+    <td class="arrow">→</td>
+    <td class="step completed">
+     <div class="title">Step 4 <b>Completed ✅</b></div><br />
+     ☑ Recap previous steps<br />
+     ☑ View configurations made for this lab<br />
+     ☑ Explore the drone viewer modal<br />
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+
+
+<div class="question">
+💡 ...? <span class="readmore">[Click to Read More]</span>
+</div>
+<div class="answer">
+...
+</div>
+
+
+
+<a href="link" target="_blank">text</a>
+
+
+<div class="step">text</div>
+
+
+<img class="standardImage" src="./img/0.png">
+
+
+<span class="labnameHere">YourLabName</span>
+
+<span class="sg_numberHere">unassigned</span>
+
+
+
+
+
+
+<table class="section_withImage">
+ <tbody>
+  <tr>
+   <td>
+    <p>text</p>
+   </td>
+   <td>
+       <img class="rightFloat" src="./img/0_0_0.png">
+   </td>
+  </tr>
+ </tbody>
+</table>
+
+
+
+
+
+
+
+
+<div class="codeblock">
+<div class="text-wrap">
+public / <b>config.json</b><br />
+<textarea id="textA" readonly>{
+"ConsoleDisplayName": "Remote Operations Console - Corrected Config",
+"UserDrones": [
+{
+"friendly_name": "Lab User Drone1",
+"drone_serial_no": "Lab1_0001"
+},
+{
+"friendly_name": "Lab User Drone2",
+"drone_serial_no": "Lab1_0002"
+},
+{
+"friendly_name": "Lab User Drone3",
+"drone_serial_no": "Lab1_0003"
+}
+],
+"DroneOperations": [
+"Rescue Coordination",
+"Damage Inspection",
+"Safety Analysis",
+"Stormwater Operations Monitor",
+"Geothermal Monitor"
+]
+}</textarea><br />
+<div id="copyToClipboard-a" class="clipboardButton">Copy to clipboard</div>
+<div id="notif" class="notif"></div>
+</div>
+</div>
+
+
+
+
+

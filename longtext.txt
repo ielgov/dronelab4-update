@@ -1,0 +1,35 @@
+<div class="longText">
+<p><b>IBM Secure Gateway (SGW) - Destination setup:</b></p>
+
+<p>SWG enables the communication between client and destination environment. The destination part of the SWG setup helps to identify the resource in the destination environment and defines the protocol for the communication between the client resource and the destination resource.
+Destinations defined within the Secure Gateway can use HTTP/HTTPS, unencrypted TCP, Transport Layer Security (TLS) server-side, and TLS Mutual Auth. Mutual authentication is the obvious choice for any connections that handle sensitive data transfers, as each side can be sure there is no HTTPS proxy (spyware, or hacker) inspecting the traffic between the server and the client.</p>
+
+<p>For the drone lab, the containerized drone controller (destination) is deployed to an OpenShift cluster (private cloud) and listens to TCP connection (not secured) from the drone UI (client) with no authentication, just for simplicity.</p>
+
+<p>The SGW enables the communication between the drone UI and the controller, and to make the communication secure, the lab SWG destination setup uses HTTPS:server-side (optionally the lab user can use HTTP connection but that does not guarantee a secure communication) to enable secure connection between the client(drone UI) and the SGW. The TLS authentication option between SWG and the destination enables the browser providers (e.g. Firefox, chrome, etc) cross-checks to make sure the connection method are actually secure. Since the drone controller was implemented without an authentication mechanism, "Reject".</p>
+
+<p>The options below provides all of the available protocol for how your application can initiate connections/requests with Secure Gateway.</p>
+
+<p><b>TCP</b><br/>
+No authentication. Your application can communicate directly with the Secure Gateway servers without requiring any certificates.</p>
+
+<p><b>HTTP</b><br/>
+TCP connection where the host header is rewritten to match the on-premises hostname.</p>
+
+<p><b>No TLS</b><br/>
+No authentication is provided. Your application can communicate directly to the gateway without requiring any certificates.</p>
+
+<p><b>TLS: Server Side</b><br/>
+TLS is enabled and the server provides a certificate to prove its authority. You need to accept the server certificate into your application trust-store.</p>
+
+<p><b>TLS: Mutual Auth</b><br/>
+The server provides a set of certificates. However, you also need to upload your own certificate or select auto-generate to automatically create a self-signed certificate/key pair that you can download along with the server certificate.</p>
+
+<p><b>HTTPS Server-side</b><br/>
+<b>TLS</b>: Server Side connection where the host header is rewritten to match the on-premises hostname.</p>
+
+<p><b>HTTPS: Mutual Auth</b><br/>
+<b>TLS</b>: Mutual Auth connection where the host header is rewritten to match the on-premises hostname.</p>
+
+<p>To complete this change, click on the small gear icon to open the details related to the new destination you just created. Then open the Edit window of the destination details.</p>
+</div>
