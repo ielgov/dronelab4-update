@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>GIS Stormwater Drone Lab - Instructions</title>
+    <title>IEL Stormwater Drone Lab - Instructions</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -11,15 +11,15 @@
 <body>
     <a id="top"></a>
     <div id="navbar">
-        <span class="start" onClick="toggleOptions()"><span class="UPDATE3">GIS</span> Stormwater Drone Lab</span>
+        <span class="start" onClick="toggleOptions()"><span class="UPDATE3">IEL</span> Stormwater Drone Lab</span>
         <span id="nb" class="item" onClick="moveTo('begin')" style="background-color: #548235;">Begin Lab</span>
         <span id="np" class="item" onClick="moveTo('prelim')">Preliminary Steps</span>
         <span id="n1" class="item" onClick="moveTo('s1')">Step 1</span>
         <span id="n2" class="item" onClick="moveTo('s2')">Step 2</span>
         <span id="n3" class="item" onClick="moveTo('s3')">Step 3</span>
         <span id="ns" class="item" onClick="moveTo('sum')">Summary</span>
-        <a href="https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/" target="_blank">
-            <span class="out item"> <img src="./img/slack.png" /> Lab Slack channel - post questions & more ⇒</span>
+        <a href="mailto:gscgov@us.ibm.com?cc=edgingtn@us.ibm.com, sjchrist@us.ibm.com, mariados@us.ibm.com&subject=Requesting%20Support%20-%20IEL%20Drone%20Lab%20(Stormwater)&body=(Your%20message%20here)" target="_blank">
+            <span class="out item"> Not an IBMer? Email gscgov@us.ibm.com for support ⇒</span>
         </a>
     </div>
     <div id="optionsMenu"><span class="opt" id="highlightedUpdates3" onClick="updates3()">[Highlight 3/15/2021 Updates]</span> <span id="keepTop" onClick="keepTop()">Keep at top</span></div>
@@ -28,23 +28,19 @@
         <div id="beginlab" class="main" style="display:block;">
             <div class="block">
                 <div class="leftHalf">
-                    <h1><span class="UPDATE3">GIS</span> Stormwater Drone Lab: Introduction</h1>
+                    <h1><span class="UPDATE3">IEL</span> Stormwater Drone Lab: Introduction</h1>
                     <span class="userNote">&#9734 For this lab, a lab user name was created for you. This name was set to <b><span class="labnameHere">YourLabName</span></b>. This information will be addressed and referenced later in the lab.</span>
                     
-                    <p class="UPDATE3">Note: The IBM Global Solution Center in Dallas (formerly referred to as the <b>GSC</b>) is now known as IBM Global Industry Solutions (<b>GIS</b>).  You will see the GIS name reflected throughout this Lab, but if you revisit previous Labs you may still encounter the GSC name.</p>
-
                     <p>
-                        <b>Welcome back!</b> This lab is the
-                        <b>third</b> in a series of labs designed to demonstrate how several IBM technologies, such as OpenShift (Kubernetes), Hybrid Multicloud, and some of the key capabilities available within
-                        <b>Maximo Application Suite (Monitor, IoT Platform, Visual Inspection)</b> can be utilized along with modern industry devices, such as <span class="darkblue">drones</span> and <span class="darkblue">sensors</span>, in various industry-specific applications.
+                        <b>Welcome back!</b> This lab is the <b>third</b> in a series of labs designed to demonstrate how several IBM technologies, such as OpenShift (Kubernetes), Hybrid Multicloud, and some of the key capabilities available within <b>Maximo Application Suite (Monitor, IoT Platform, Visual Inspection)</b> can be utilized along with modern industry devices, such as <span class="darkblue">drones</span> and <span class="darkblue">sensors</span>, in various industry-specific applications.
                     </p>
                     
                     <p>
-                        In previous labs, you deployed a customized, containerized application onto OpenShift and then connected and utilized various capabilities made possible by IBM Cloud Satellite. If you have not completed the previous labs, please return to the SBaaS Catalog (<a href="http://ibm.biz/sbaas-app" target="_blank">http://ibm.biz/sbaas-app</a>) and request access to Remote Drone Console Application Hands-on Lab #1, and then Remote Drone Console Application Hands-on Lab #2. Keep in mind that there is an AWS version of the Drone Lab 1 available as well. This lab is optional but recommended. </p>
+                        In previous labs, you deployed a customized, containerized application onto OpenShift and then connected and utilized various capabilities made possible by IBM Cloud Satellite. If you have not completed the previous labs, please return to the Technology Zone (<a href="https://techzone.ibm.com/collection/dronelab1" target="_blank">https://techzone.ibm.com/collection/dronelab1</a>) and request access to Remote Drone Console Application Hands-on Lab #1, and then Remote Drone Console Application Hands-on Lab #2 Satellite (<a href="https://techzone.ibm.com/collection/dronesatlab2" target="_blank">https://techzone.ibm.com/collection/dronesatlab2</a>). </p>
                     
                     <p>
                         If it has been a significant amount of time since you have completed the labs, you can review the guide for <b>Drone Lab 1</b>, located here:
-                        <a href="https://pages.github.ibm.com/dallas-gsc-gov/dronelab" target="_blank">https://pages.github.ibm.com/dallas-gsc-gov/dronelab</a> for your reference. You may also refer to the personalized guide for <b>Drone Lab 2</b> that was previously emailed to you.
+                        <a href="https://ielgov.github.io/dronelab1" target="_blank">https://ielgov.github.io/dronelab1</a> for your reference. You may also refer to the personalized guide for <b>Drone Lab 2</b> that was previously emailed to you.
                     </p>
                     
                     <p>
@@ -52,7 +48,7 @@
                     </p>
 
                     <p id="lab1Confirm">
-                        <input type="checkbox" id="lab1Complete" onclick="lab1Completed()"> I have (at least) completed Drone Lab 1 and 2 and am ready to begin this lab, <span class="UPDATE3">GIS</span> Stormwater Drone Lab.</p>
+                        <input type="checkbox" id="lab1Complete" onclick="lab1Completed()"> I have (at least) completed Drone Lab 1 and 2 and am ready to begin this lab, <span class="UPDATE3">IEL</span> Stormwater Drone Lab.</p>
 
                     <p id="lab1Confirmation" style="display:none">Thank you for completing Drone Lab 1 and 2! You may continue on with this lab.</p>
 
@@ -83,9 +79,8 @@
                         <img src="./img/labflow.png" class="bigImage" />
                     </div>
                     <div class="rightHalfThird" style="text-align: left; vertical-align: top">
-                        <p class="UPDATE3">Throughout the lab, there will be several references to the <span class="tblue"><b>IBM Cloud SBaaS</b></span>. It is a Hybrid Multicloud <b>Sandbox as a Service (SBaaS)</b> platform which provides cloud services to enable our technical sellers to gain experience with IBM Cloud capabilities along with other industry Cloud platforms in a hands-on environment. Pre-packaged scenarios and technologies can be customized to build client specific PoCs/prototypes and show the value of IBM Cloud and Industry solutions to help clients with their cloud and digital transformation journeys.</p>
 
-                     <p>The purpose of this lab is to consider how extending the capabilities of the Remote Drone Operations Console that you worked with in Lab 1 and Lab 2 can help deliver functionality within an industry context of Stormwater Operations. You may remember that the previous labs resulted in an application running in OpenShift within the IBM Cloud SBaaS that was connected to drones, sensors, and other cloud resources running in the <span class="UPDATE3">Global Industry Solutions</span> private cloud. The <b>purpose</b> of that application was to allow a user to see <span class="tblue">video output and telemetry data from a remote drone</span>, as well as to <span class="tblue">visualize and filter sensors and other resources</span> that were within the same geospatial area. In this lab, you will take that application a step <b>further</b> and bring <span class="tblue">additional insights</span> to a user who is concerned with public safety during situations where risks can occur during/after <b>heavy rainfall</b> accumulates in areas where pedestrian and vehicular traffic may become <b>dangerous</b>.</p>
+                     <p>The purpose of this lab is to consider how extending the capabilities of the Remote Drone Operations Console that you worked with in Lab 1 and Lab 2 can help deliver functionality within an industry context of Stormwater Operations. You may remember that the previous labs resulted in an application running in OpenShift within the IBM Cloud that was connected to drones, sensors, and other cloud resources running in the <span class="UPDATE3">Industry Engineering Lab</span> private cloud. The <b>purpose</b> of that application was to allow a user to see <span class="tblue">video output and telemetry data from a remote drone</span>, as well as to <span class="tblue">visualize and filter sensors and other resources</span> that were within the same geospatial area. In this lab, you will take that application a step <b>further</b> and bring <span class="tblue">additional insights</span> to a user who is concerned with public safety during situations where risks can occur during/after <b>heavy rainfall</b> accumulates in areas where pedestrian and vehicular traffic may become <b>dangerous</b>.</p>
 
                     <table class="section_withImage">
                         <tbody>
@@ -106,7 +101,7 @@
                         </tbody>
                     </table>
                      
-                     <p>In the context of this Remote Drone application, you will learn how portfolio capabilities within the IBM Maximo Application Suite such as  Visual Inspection and Monitor provide analytic uplift on raw drone video footage and weather/stream sensor readings that can be leveraged to deliver insight directly to the fingertips of the Stormwater Operations Management command center operator. Specifically, you’ll get exposure to how visual analytic models can be trained and deployed within a Maximo Visual Inspection (MVI) environment based on a preliminary dataset of images or video and made available to external applications via an API endpoint. You'll even be able to test the deployed model via a custom user interface running in the IBM Cloud SBaaS.   Then, you will walk through how weather and water sensors can be managed and monitored via Maximo Monitor and the associated IoT Tool (Watson IoT Platform) to trigger alerts based on abnormal measurements. Finally, you’ll revisit the Remote Drone Console application to experience the new Stormwater Operations functionality where you’ll interact as a command center operator who is using the interface to remotely monitor the impacts of a severe thunderstorm in Coppell, TX. As a takeaway, you will be able to consider how visual and sensor analytics, when combined with insights from weather and other city data in a geospatial context, can help operators gain the kind of situational awareness that allows them to prioritize and coordinate their responsive actions.</p>
+                     <p>In the context of this Remote Drone application, you will learn how portfolio capabilities within the IBM Maximo Application Suite such as  Visual Inspection and Monitor provide analytic uplift on raw drone video footage and weather/stream sensor readings that can be leveraged to deliver insight directly to the fingertips of the Stormwater Operations Management command center operator. Specifically, you’ll get exposure to how visual analytic models can be trained and deployed within a Maximo Visual Inspection (MVI) environment based on a preliminary dataset of images or video and made available to external applications via an API endpoint. You'll even be able to test the deployed model via a custom user interface running in the IBM Cloud.   Then, you will walk through how weather and water sensors can be managed and monitored via Maximo Monitor and the associated IoT Tool (Watson IoT Platform) to trigger alerts based on abnormal measurements. Finally, you’ll revisit the Remote Drone Console application to experience the new Stormwater Operations functionality where you’ll interact as a command center operator who is using the interface to remotely monitor the impacts of a severe thunderstorm in Coppell, TX. As a takeaway, you will be able to consider how visual and sensor analytics, when combined with insights from weather and other city data in a geospatial context, can help operators gain the kind of situational awareness that allows them to prioritize and coordinate their responsive actions.</p>
 
 
 
@@ -168,13 +163,13 @@
             <p>When you made a request to take this hands-on lab, there were some background tasks that were performed on your behalf in order to prepare the lab environment, which are described below. Don't worry if you have some questions about these concepts... you will get a lot more explanation and hands-on experience as you move through lab steps.</p>
 
             <p>
-                <b>Created a Maximo Visual Inspection (MVI) environment within <span class="UPDATE3">GIS</span> Private Cloud</b><br/>
+                <b>Created a Maximo Visual Inspection (MVI) environment within <span class="UPDATE3">IEL</span> Private Cloud</b><br/>
 
-                Provisioned and installed Maximo Visual Inspection v 8.0 (as part of Maximo Application Suite 8.2) within an OpenShift Cloud Platform 4.6 environment with one worker node allocated on a bare metal machine containing a single Nvidia Tesla P100 GPU (graphical processing unit). We then created, trained, and deployed a custom object detection model that would be relevant for stormwater management operations.  To do this, we also took drone footage near the <span class="UPDATE3">GIS</span> location in Coppell, TX to be used throughout the lab. 
+                Provisioned and installed Maximo Visual Inspection v 8.0 (as part of Maximo Application Suite 8.2) within an OpenShift Cloud Platform 4.6 environment with one worker node allocated on a bare metal machine containing a single Nvidia Tesla P100 GPU (graphical processing unit). We then created, trained, and deployed a custom object detection model that would be relevant for stormwater management operations.  To do this, we also took drone footage near the <span class="UPDATE3">IEL</span> location in Coppell, TX to be used throughout the lab. 
             </p>
 
             <p>
-                <b>Created a Maximo Monitor within <span class="UPDATE3">GIS</span> Private Cloud</b><br/>
+                <b>Created a Maximo Monitor within <span class="UPDATE3">IEL</span> Private Cloud</b><br/>
 
                 Provisioned and installed Maximo Monitor version 8.0  and IoT Tool (Watson IoT Platform) as part of Maximo Application Suite 8.0, within an OpenShift Cloud Platform 4.4 environment. We then created a series of sample sensors based on project experience with actual weather and river/stream sensors from the DFW area and configured to support a stormwater use case. 
             </p>
@@ -186,27 +181,27 @@
             </p>-->
 
             <p>
-                <b>Created a custom MVI test application <span class="UPDATE3">in</span> the IBM Cloud SBaaS</b><br/>
+                <b>Created a custom MVI test application <span class="UPDATE3">in</span> the IBM Cloud</b><br/>
 
-               Created a small application to allow the user to interact with the <span class="UPDATE3">GIS</span> Private Cloud instance of the MVI Stormwater model API from IBM Cloud SBaaS over a secure tunnel enabled via Cloud Satellite Link.
+               Created a small application to allow the user to interact with the <span class="UPDATE3">IEL</span> Private Cloud instance of the MVI Stormwater model API from IBM Cloud over a secure tunnel enabled via Cloud Satellite Link.
             </p>
 
             <p>
-                <b>Established <span class="UPDATE3">GIS</span> infrastructure as IBM Cloud Satellite Location</b><br/>
+                <b>Established <span class="UPDATE3">IEL</span> infrastructure as IBM Cloud Satellite Location</b><br/>
 
-                IBM Cloud Satellite enables local <span class="UPDATE3">GIS</span> resources to be utilized as a Satellite location by using the infrastructure already present in that location. To achieve the necessary GIS Satellite location configuration, a set of hosts machines were dedicated in order to deploy Satellite control planes that could the manage GIS cluster. This established a secure Satellite link between IBM Cloud and the GIS location. Satellite Link uses Link Endpoints configured on this private GIS environment to enable the IBM Cloud SBaaS Remote Drone Console application functionality that will be leveraged as part of the lab's Visual Inspection test page and Remote Drone Console Application functionality.
+                IBM Cloud Satellite enables local <span class="UPDATE3">IEL</span> resources to be utilized as a Satellite location by using the infrastructure already present in that location. To achieve the necessary IEL Satellite location configuration, a set of hosts machines were dedicated in order to deploy Satellite control planes that could the manage IEL cluster. This established a secure Satellite link between IBM Cloud and the IEL location. Satellite Link uses Link Endpoints configured on this private IEL environment to enable the IBM Cloud Remote Drone Console application functionality that will be leveraged as part of the lab's Visual Inspection test page and Remote Drone Console Application functionality.
             </p>
 
             <p>
-                <b>Deployed a project and artifacts for each lab user in the IBM Cloud SBaaS</b><br/>
+                <b>Deployed a project and artifacts for each lab user in the IBM Cloud</b><br/>
 
-               A project with an updated Remote Drone Console Application with custom Stormwater Operations functionality was created and deployed for each lab user in a IBM Cloud SBaaS OpenShift Cloud Platform 4.5 cluster. 
+               A project with an updated Remote Drone Console Application with custom Stormwater Operations functionality was created and deployed for each lab user in a IBM Cloud OpenShift Cloud Platform 4.5 cluster. 
             </p>
 
             <p>
-                <b>Adding each user to the IBM Cloud SBaaS environment</b><br/>
+                <b>Adding each user to the IBM Cloud environment</b><br/>
 
-                The new user was first given user permissions to an existing IBM Cloud organization for the SBaaS environment that was provisioned for the lab. A new project was then created specifically for that user in the OpenShift Cloud Platform 4.5 cluster within that organization, and user policies were applied to enable the permissions necessary for completion of the lab steps.
+                The new user was first given user permissions to an existing IBM Cloud organization for the environment that was provisioned for the lab. A new project was then created specifically for that user in the OpenShift Cloud Platform 4.5 cluster within that organization, and user policies were applied to enable the permissions necessary for completion of the lab steps.
             </p>
                 </div>
                  <div class="rightHalf">
@@ -230,46 +225,6 @@
     </div>
     <!--- Preliminary Steps -->
     <div id="prelim" class="main">
-        <div class="block">
-            <div class="leftHalf">
-                <div class="slackInfo">
-                    <h2>
-                        <a name="slack">Slack Communication</a>
-                    </h2>
-
-                    <p>
-                        Communication (such as feedback, questions, comments, and help) is done through a Slack channel dedicated to this lab. Before you begin the lab, it is encouraged that you confirm you have access to the channel
-                        <span class="purple">#2021gsc_ibmcloudsandbox_stormwaterdronelab</span>, located in the <b>IBM Sales</b> workspace (you may need to enter <b><span class="tblue">ibm-sales</span></b>.slack.com first).
-                    </p>
-                    <p>
-                        Go to
-                        <span class="blue">
-                            <a href="https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/" target="_blank">
-                                https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/
-                            </a>
-                        </span>
-                        to verify you have access to this channel.
-                    </p>
-                </div>
-            </div>
-            <div class="qHalf">
-                <div class="question">
-                    👈 When I click that link, I do not see a Slack channel.
-                    <span class="readmore">[Click to Read Solution]</span>
-                </div>
-                <div class="answer">
-                    You will encounter issues if you do not have access to the
-                    <b>IBM Sales workspace</b>. <br/><br/>
-
-                    Go to <a href="https://ibm-sales.slack.com" target="_blank">https://ibm-sales.slack.com</a> - if you do not see a Slack channel at all, you may need to go
-                    <a href="https://ibm.enterprise.slack.com/signin/find-workspaces" target="_blank">https://ibm.enterprise.slack.com/signin/find-workspaces</a> and search for <b>“IBM Sales”</b>. This workspace has over 34,000 members and has a
-                    handshake icon with a blue background. Join this workspace and you will be granted access.
-                    <b>You may need to scroll down several times to find it.</b>
-                    <br/><br/>
-                    Once you click to join the IBM Sales workspace, try visiting <a href="https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/" target="_blank">https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/</a> again.
-                </div>
-            </div>
-        </div>
 
         <div class="block">
             <h2> Preliminary Steps </h2>
@@ -292,7 +247,7 @@
 
 
                 <p>
-                    <b>After you requested this lab through the SBaaS, you should have received an email </b> <i>(“Thank you for your interest in the IBM Sandbox as a Service Hands—on <span class="UPDATE3">GIS</span> Stormwater Drone Lab...”)</i> containing the <b>link to this instructions page.</b>
+                    <b>After you requested this lab, you should have received an email</b> containing the <b>link to this instructions page.</b>
                 </p>
 
                 <p>
@@ -307,14 +262,11 @@
                     <p><b>Your Lab Name</b>: <span class="labnameHere">YourLabName</span></p>
                 </div><br/>
                 <div class="subImpInfo UPDATE3">
-                    Referencing the above, if your Lab Name is <b>"YourLabName"</b>, you may encounter errors in the lab steps that follow. Please use the Slack channel link located in the top right corner of this page and post <b>"I was not assigned a lab name for GIS Stormwater Drone Lab."</b>
+                    Referencing the above, if your Lab Name is <b>"YourLabName"</b>, you may encounter errors in the lab steps that follow. Please use the email link located in the top right corner of this page and send an email to gscgov@us.ibm.com with the message, <b>"I was not assigned a lab name for IEL Stormwater Drone Lab."</b>
                 </div>
 
                  <p class="inote UPDATE3">
-                    <b>Note</b>: If you continue with this lab without having completed at least Drone Lab 1 & Drone Lab 2, you may not have the appropriate context for some of the activities and technical flows that follow. If this applies to you, it is recommended that you request the appropriate labs via the SBaaS here:  <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5f111965551a9d2ccfaad85d&type=template" target="_blank">Lab 1 for IBM Cloud</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5ffbd20447b015001adc2aa4&type=template" target="_blank">Lab 1 for AWS Cloud</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5fab6aaabf28fe001ab505a3&type=template" target="_blank">Lab 2 with Cloud Integration</a>.
-                </p>
-                    
-                <p class="inote UPDATE3">If you did take the labs previously but your <span class="UPDATE3">request</span> is currently marked as <b>"expired"</b> or <b>"de-provisioned"</b> within the SBaaS, you will still be able to access the lab instruction material and associated OpenShift project endpoints to use as a reference.
+                    <b>Note</b>: If you continue with this lab without having completed at least Drone Lab 1 & Drone Lab 2 (Satellite), you may not have the appropriate context for some of the activities and technical flows that follow. If this applies to you, it is recommended that you request the appropriate labs via TechZone here:  <a href="https://techzone.ibm.com/collection/dronelab1" target="_blank">Drone Lab 1</a> | <a href="https://techzone.ibm.com/collection/dronesatlab2" target="_blank">Drone Lab 2 (Satellite)</a>.
                 </p>
                 
 
@@ -393,7 +345,7 @@
                                 <tr>
                                     <td style="text-align:left;vertical-align: top;">
                                         <p>
-                                            You may recall that in <b>Drone Lab 2</b>, you were able to view the <b>data</b> from a <b>drone</b> within the <span class="UPDATE3">GIS</span> Private Cloud environment via the Remote Drone Console application running in IBM Cloud SBaaS <i>(image on the right)</i>.</p>
+                                            You may recall that in <b>Drone Lab 2</b>, you were able to view the <b>data</b> from a <b>drone</b> within the <span class="UPDATE3">IEL</span> Private Cloud environment via the Remote Drone Console application running in IBM Cloud <i>(image on the right)</i>.</p>
                                             
                                             <p> This drone data included <b>images</b> captured by the drone camera, along with various <b>telemetry</b> and <b>measurements</b>. If you would like to review the specific data the drone sends back, you can review the details <a href="./img/DroneViewerModal.png" target="_blank">here</a>, which are excerpted from Drone Lab 2.
                                         </p>
@@ -482,7 +434,7 @@
                                 The architecture of IBM Maximo Visual Inspection consists of hardware, resource management, deep learning computation, service management, and application service layers. Each layer is built around industry-standard technologies.</p>
 
                                 <p><b>A Note about GPUs:</b><br/>
-                                The OpenShift® cluster where Maximo Visual Inspection is deployed must have 1 or more worker nodes with 1 or more Nvidia GPUs available for training models. For more information about hardware requirements, see "Application-specific requirements" in Maximo Application Suite system requirements.  For this lab, there is an MVI instance with a GPU-enabled worker node running in the Dallas <span class="UPDATE3">GIS</span> Private Cloud. </p>
+                                The OpenShift® cluster where Maximo Visual Inspection is deployed must have 1 or more worker nodes with 1 or more Nvidia GPUs available for training models. For more information about hardware requirements, see "Application-specific requirements" in Maximo Application Suite system requirements.  For this lab, there is an MVI instance with a GPU-enabled worker node running in the <span class="UPDATE3">IEL</span> Private Cloud. </p>
                             </td>
                             <td>
                                 <img class="rightFloat" src="./img/1_architecture.png">
@@ -751,7 +703,7 @@
                         ✅ Consideration of how video analytics can help Stormwater Operations users to derive insights from drone images and other sources<br/>
                         ✅ Introduction to Maximo Visual Inspection, its architecture, and its alignment within the Maximo Application Suite.<br/>
                         ✅ Capabilities of MVI, and overall steps required to create a data set, prepare/label the data, train the model and deploy <br/>
-                        ✅ Example hybrid cloud flow between a simple test application hosted in an OpenShift cluster within IBM Cloud SBaaS and the Maximo Visual Inspection instance hosted in an OpenShift cluster in the IBM <span class="UPDATE3">GIS</span> Private Cloud.<br/>
+                        ✅ Example hybrid cloud flow between a simple test application hosted in an OpenShift cluster within IBM Cloud and the Maximo Visual Inspection instance hosted in an OpenShift cluster in the IBM <span class="UPDATE3">IEL</span> Private Cloud.<br/>
                         ✅ Some exposure to how a program can send images to the MVI API, and parse the results to overlay on the image (and/or to be used to trigger alerts). <br/>
 
                     </div>
@@ -863,11 +815,11 @@
                                 <tr>
                                     <td style="text-align:left;vertical-align: top;">
                                         <p>
-                                            Once again, recall that in <b>previous drone labs</b>, you were able to view the <b>data</b> from a drone, operated within the <span class="UPDATE3">GIS</span> Private Cloud environment via the Remote Drone Console application running in IBM Cloud SBaaS <i>(image on the right)</i>.
+                                            Once again, recall that in <b>previous drone labs</b>, you were able to view the <b>data</b> from a drone, operated within the <span class="UPDATE3">IEL</span> Private Cloud environment via the Remote Drone Console application running in IBM Cloud <i>(image on the right)</i>.
                                             </p>
                                             
                                             <p> 
-                                                That drone data included <b>images</b> captured by the drone camera, along with various <b>telemetry</b> and <b>measurements</b>. Remember that part of that drone data included the GPS coordinates, which were used to query a Cloudant database for sensor data (raw measurements) that filtered based on a geo-fenced area around the drone location. If you would like to reread the previous lab sections on how sensors were used based on drone location, you can go to <a href="https://pages.github.ibm.com/dallas-gsc-gov/dronelab2/" target="_blank">https://pages.github.ibm.com/dallas-gsc-gov/dronelab2/</a> and review <b>Step 3.1</b> and <b>Step 4.3.2</b>. <i>Note that in the step after this, you will re-visit the remote drone console application as well.</i>
+                                                That drone data included <b>images</b> captured by the drone camera, along with various <b>telemetry</b> and <b>measurements</b>. Remember that part of that drone data included the GPS coordinates, which were used to query a Cloudant database for sensor data (raw measurements) that filtered based on a geo-fenced area around the drone location. If you would like to reread the previous lab sections on how sensors were used based on drone location, you can go to <a href="https://ielgov.github.io/dronelab12/" target="_blank">https://ielgov.github.io/dronelab12/</a> and review <b>Step 3.1</b> and <b>Step 4.3.2</b>. <i>Note that in the step after this, you will re-visit the remote drone console application as well.</i>
                                         </p>
 
                                         <p>
@@ -1278,12 +1230,12 @@
                     <tr>
                     <td style="vertical-align: top;">
                         <p>
-                            In the previous <b>Drone Labs</b>, you worked extensively with the containerized Remote Drone Console Application in the IBM Cloud SBaaS environment, and along the way learned about <b>Red Hat OpenShift</b> and <b>Cloud Integration</b> in a <b>Hybrid Multicloud context</b>.</p>  
+                            In the previous <b>Drone Labs</b>, you worked extensively with the containerized Remote Drone Console Application in the IBM Cloud environment, and along the way learned about <b>Red Hat OpenShift</b> and <b>Cloud Integration</b> in a <b>Hybrid Multicloud context</b>.</p>  
                         
                         <p>
-                            In Drone Lab 1, the goal was to make you more comfortable with the relationship between <b>GitHub</b> and <b>RedHat OpenShift</b> on <b>IBM Cloud</b> (and optionally on <b>AWS Cloud</b>) and provide a better understanding of the overall process to take an application from code/configuration all the way through to its containerized cloud deployment. Along the way, hopefully you were able to get a preliminary hands-on experience with the concept of a cloud “operator” that can gain some benefit via the Remote Drone Console Application (in the IBM Cloud) to visualize and interact with drones in a remote setting.</p>
+                            In Drone Lab 1, the goal was to make you more comfortable with the relationship between <b>GitHub</b> and <b>RedHat OpenShift</b> on <b>IBM Cloud</b> and provide a better understanding of the overall process to take an application from code/configuration all the way through to its containerized cloud deployment. Along the way, hopefully you were able to get a preliminary hands-on experience with the concept of a cloud “operator” that can gain some benefit via the Remote Drone Console Application (in the IBM Cloud) to visualize and interact with drones in a remote setting.</p>
                             
-                            <p>In Drone Lab 2, you focused on learning how the various IBM Cloud Integration services (<b>Secure Gateway, Cloud Satellite,  API Connect, and App Connect</b>) can be leveraged to enable an application in a hybrid cloud context, and thus augment its security, functionality, and connectivity. You also explored how these services could be put to use within the Remote Drone Console Application to “connect” to remote resources through the use of the above services.  After connection to a remote drone environment, you were able to view the images, telemetry, measurements, and even GPS from a drone, and then view readings from sensors that were located within a drone’s geospatial proximity. With the Remote Drone Console Application, you interacted as an operator to see how they could benefit from having access to the (raw) information collected via the drone to help them monitor a situation.</p>
+                            <p>In Drone Lab 2, you focused on learning how the various IBM Cloud Integration services can be leveraged to enable an application in a hybrid cloud context, and thus augment its security, functionality, and connectivity. You also explored how these services could be put to use within the Remote Drone Console Application to “connect” to remote resources through the use of the above services.  After connection to a remote drone environment, you were able to view the images, telemetry, measurements, and even GPS from a drone, and then view readings from sensors that were located within a drone’s geospatial proximity. With the Remote Drone Console Application, you interacted as an operator to see how they could benefit from having access to the (raw) information collected via the drone to help them monitor a situation.</p>
                     </td>
                     <td style="vertical-align: top;">
                         <img class="rightFloat" src="./img/labflow.png">
@@ -1425,9 +1377,9 @@
                                 <tr>
                                     <td>
                                         <p>Make sure you have completed all the activities (via the <span class="gold">gold button</span> above) before moving onto this step.</p>
-                                        <p>When you accessed the application, you may have noticed that the URL reflects an <b>IBM cloud endpoint</b>. In fact, this application was deployed for you in a project within an OpenShift Cluster in the IBM Cloud SBaaS. We provided the direct link to the application, but you could also navigate to IBM Cloud and find the project and application within the <span class="tblue"><b>mycluster-dal12-b3c.4x16</b> cluster in the <b>1500867 - IBM</b></span> organization. Here is a direct <a id="goldproj" href="#" target="_blank">link to your project in IBM Cloud SBaaS</a> if you want to see the deployment environment. </p>
+                                        <p>When you accessed the application, you may have noticed that the URL reflects an <b>IBM cloud endpoint</b>. In fact, this application was deployed for you in a project within an OpenShift Cluster in the IBM Cloud. We provided the direct link to the application, but you could also navigate to IBM Cloud and find the project and application within the <span class="tblue"><b>mycluster-dal12-b3c.4x16</b> cluster in the <b>1500867 - IBM</b></span> organization. Here is a direct <a id="goldproj" href="#" target="_blank">link to your project in IBM Cloud</a> if you want to see the deployment environment. </p>
 
-                    <p>You can review <a href="https://pages.github.ibm.com/dallas-gsc-gov/dronelab/" target="_blank">Drone Lab 1</a> for reference on the relationship between GitHub and OpenShift within IBM Cloud SBaaS, as well as the overall process of taking an application from code/configuration through to its containerized cloud deployment.</p>
+                    <p>You can review <a href="https://ielgov.github.io/dronelab1/" target="_blank">Drone Lab 1</a> for reference on the relationship between GitHub and OpenShift within IBM Cloud, as well as the overall process of taking an application from code/configuration through to its containerized cloud deployment.</p>
                                 </td>
                             <td>
                                 <img class="rightFloat" src="./img/console_storm_UI.png">
@@ -1439,12 +1391,12 @@
                     
 
                     <p>
-                         This completes all the steps for Step 3 – <b>congratulations</b>! Please take a screenshot of the application interface and post it in the Slack channel along with any feedback on this lab. You may continue to finish this step and then move onto the Summary.
+                         This completes all the steps for Step 3 – <b>congratulations</b>! Please take a screenshot of the application interface and send it in an email to gscgov@us.ibm.com. You may continue to finish this step and then move onto the Summary.
                     </p>
 
                     <div class="finalStep">
-                        <span class="yel">Post a screenshot</span><br> of the application interface<br>
-                        in the Slack channel <a href="https://app.slack.com/client/T27C5S5GQ/C01RJ5JCCP2/" target="_blank">#2021gsc_ibmcloudsandbox_stormwaterdronelab</a><br> <span class="smalltext">(Link also in the top right of this page)</span></div>
+                        <span class="yel">Email a screenshot</span><br> of the application interface<br>
+                        to gscgov@us.ibm.com. <br> <span class="smalltext">(Link also in the top right of this page)</span></div>
 
                 </div>
 
@@ -1455,7 +1407,7 @@
                     </h2>
                     <div class="sectionTitle">You completed Step 3! 🎉</div>
                     <p>
-                        You successfully navigated to your Remote Drone Console Application running in the IBM Cloud SBaaS, and found the new Stormwater Operations Monitor interface. There, you empathized with the role of an operator who is trying to mitigate the risks of an ongoing weather event in Coppell, TX. You experienced how the insights from IBM tools like Maximo Monitor and Maximo Visual Inspection can drive more informed situational awareness to make assessment of emerging risks/alerts and facilitate a more coordinated mitigation response plan.
+                        You successfully navigated to your Remote Drone Console Application running in the IBM Cloud, and found the new Stormwater Operations Monitor interface. There, you empathized with the role of an operator who is trying to mitigate the risks of an ongoing weather event in Coppell, TX. You experienced how the insights from IBM tools like Maximo Monitor and Maximo Visual Inspection can drive more informed situational awareness to make assessment of emerging risks/alerts and facilitate a more coordinated mitigation response plan.
                     </p>
                     <div class="rect magentaRect single">
                         <div class="in">
@@ -1509,7 +1461,7 @@
 
     <!--- Begin Summary -->
     <div id="summary" class="main">
-        <h2><span class="UPDATE3">GIS</span> Stormwater Drone Lab: Summary</h2>
+        <h2><span class="UPDATE3">IEL</span> Stormwater Drone Lab: Summary</h2>
         <div class="timeline">
             <table>
                 <tbody>
@@ -1581,7 +1533,7 @@
 
         </div>
         <div class="mid">
-            Thank you for taking time to complete <b><span class="UPDATE3">GIS</span> Stormwater Drone Lab</b>. <span class="blue">Did you enjoy this lab?</span> Please leave a comment in this lab’s <span class="purple">Slack channel</span> (link in the top right) and let us know!<br/><br/>
+            Thank you for taking time to complete <b><span class="UPDATE3">IEL</span> Stormwater Drone Lab</b>. <br/><br/>
             <table class="futureLabs">
                 <tbody>
                     <tr class="header">
@@ -1596,14 +1548,6 @@
                             Building the drone application on a Multi-Hybrid cloud platform and using all the associated coding tools.
                         </td>
                     </tr>
-                     <tr class="completed">
-                        <td>
-                            <b>Lab 1 (AWS)</b> 
-                        </td>
-                        <td>
-                            Building the drone application on a Multi-Hybrid cloud platform and using all the associated coding tools within AWS cloud.
-                        </td>
-                    </tr>
                     <tr class="completed">
                         <td>
                             ✅ <b>Lab 2</b> Completed
@@ -1614,7 +1558,7 @@
                     </tr>
                     <tr class="completed">
                         <td >
-                             ✅ <b>Stormwater Lab</b> Completed
+                             ✅ <b>Lab 3: Stormwater Lab</b> Completed
                         </td>
                         <td>
                             Apply visual recognition to detect/count vehicles and sensor API to monitor water/flooding in streams in order to reroute traffic and barricade unsafe conditions, in a specific geographic location.
@@ -1625,16 +1569,18 @@
         </div>
 
         <div class="mid">
-            The GIS Stormwater Drone Lab was created by the <b>IBM Global Industry Solutions Public Market</b> team in Dallas, TX.<br/>
-            Thank you to Romelia Flores, <span class="UPDATE3">Jenny Ang</span> and the SBaaS team, and Scott Knupp for their support on this lab.<br/><br/>
-            For more information on <span class="UPDATE3"><b>Global Industry Solutions</b></span>, what we do, and our pre-sales technical support for industry solutions, <br/>
-            visit <a href="https://ibm.biz/gscdallas" target="_blank">https://ibm.biz/gscdallas</a>.<br/> <br/>
+            The IEL Stormwater Drone Lab was created by the <b>IBM Industry Engineering Lab PubFed</b> team in Coppell, TX.<br/> <br/>
         </div>
 
         <hr/>
 
          <div class="midl UPDATE3">
-           <b>Related labs and collateral about this use case</b>:  <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5f112243551a9d2ccfaad860&type=template" target="_blank">Stormwater Commander Experience Lab</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5f11238c551a9d2ccfaad861&type=template" target="_blank">Stormwater Responder Experience Lab</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5f111965551a9d2ccfaad85d&type=template" target="_blank">Drone Lab 1</a> | <a href="https://ppydalpdapp01.sl.bluecloud.ibm.com/details?sb_id=5fab6aaabf28fe001ab505a3&type=template" target="_blank">Drone Lab 2</a> | <a href="https://gsc-w3-oneclick.mybluemix.net/solution/498" target="_blank">Stormwater prototype (<span class="UPDATE3">GIS</span> Solution Catalog)</a> <br/>
+           <b>Related labs and collateral about this use case</b>:  
+           
+           <a href="https://techzone.ibm.com/collection/government-industry-stormwater-commander-experience-lab" target="_blank">Stormwater Commander Experience Lab</a> | 
+           <a href="https://techzone.ibm.com/collection/government-industry-stormwater-responder-experience-lab" target="_blank">Stormwater Responder Experience Lab</a> | 
+           <a href="https://techzone.ibm.com/collection/dronelab1" target="_blank">Drone Lab 1</a> | 
+           <a href="https://techzone.ibm.com/collection/dronesatlab2" target="_blank">Drone Lab 2 (Satellite)</a> <br/>
            <b>Related labs and resources about this technology</b>: <a href="https://mam-hol.eu-gb.mybluemix.net/" target="_blank">Maximo Labs</a> <i>(separate sign up required)</i>
            <br/><br/><br/>
         </div>
